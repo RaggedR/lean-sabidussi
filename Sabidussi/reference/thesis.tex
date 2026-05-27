@@ -1,0 +1,30 @@
+\documentclass[12pt]{amsbook} 
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+% amsthm and amsmath should be included by the document class.
+
+\input{commands}
+
+\begin{document}
+%front matter
+\title{Symmetric Graphs and their Quotients}
+\author{Robin Langer}
+
+\maketitle
+\tableofcontents
+%main matter
+\include{introduction}
+\include{background}
+\include{coset}
+\include{geometric}
+\include{threearc}
+%\include{symmetric-design}
+
+%back matter
+%bibliography
+\nocite{*}
+\bibliographystyle{plain} % or amsalpha (or others)
+\bibliography{references}
+\end{document}

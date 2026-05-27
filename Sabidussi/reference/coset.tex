@@ -1,0 +1,644 @@
+\chapter{Coset Graphs}
+
+In this chapter we first show that for any group $G$, 
+the transitive representations of $G$
+together with $G$-homomorphisms between them
+form a lattice isomorphic to a quotient of
+the subgroup lattice of $G$.
+%The primitive representations of $G$ are the co-atoms
+%of this lattice.
+Next we describe a construction of Sabidussi's
+for vertex transitive graphs, and give a 
+group theoretic characterization
+of symmetric graphs.
+Finally we consider quotients 
+of symmetric graphs from a group theoretic perspective. 
+
+%We describe three well-known methods of constructing ``extensions''
+%of symmetric graphs -- the direct sum, the lexicographic product,
+%and the Biggs covering graph construction.
+
+\section{Transitive Permutation Groups}
+
+% Coset Representation
+\begin{definition}[Core of a subgroup]
+If $H$ is a subgroup of $G$, then the \emph{core} of $H$ in $G$ is:
+$$\Core_G(H) = \bigcap_{x \in G} x^{-1} H x $$
+\end{definition}
+
+\begin{proposition} If $H$ is a subgroup of $G$, 
+then the core of $H$ in $G$ is a normal subgroup of $G$.
+\begin{proof}
+Since $gx$ runs over all the elements of $G$ as $x$ does, we have:
+\begin{eqnarray*}
+g^{-1}\Core_G(H)g & = & \bigcap_{x \in G} (gx) H (gx)^{-1} \\
+                  & = & \bigcap_{x \in G} x H x^{-1} 
+\end{eqnarray*}               
+for any $g \in G$. 
+\end{proof}
+\end{proposition}
+
+\begin{definition} [Coset Representation]
+For $H$ a subgroup of $G$,
+let $\Cos_G(H)$ denote the right cosets of $H$ in $G$.
+We may define an action of $G$ on $\Cos_G(H)$ by:
+$$ (Ha)^x = Hax $$
+This is indeed an action, since:
+\begin{eqnarray*}
+{(Ha)^x}^y & = & (Hax)^y \\
+           & = & (Haxy) \\
+	   & = & (Ha)^{xy}
+\end{eqnarray*}
+for any ``$Ha$'' a coset of $H$ in $G$, and any $x,y \in G$.
+We call a permutation group of the form $(G,\cos_G(H))$ a
+{\it coset representation} of $G$.
+\end{definition}
+
+\begin{example}[Right Regular Representation]
+For any group $G$, the \emph{right regular representation}
+of $G$ is the permutation group $(G,G)$ with the action given by:
+$$ g^{h} = gh. $$
+This is a special case of a coset representation 
+where $H$ is the trivial group $\{ 1 \}$.
+\end{example}
+
+
+\begin{proposition}
+For any pair of groups $H \leq G$, the action of $G$
+on the cosets of $H$ is transitive with kernel $\Core_G(H)$.
+\begin{proof}
+Let $Ha_1$ and $Ha_2$ be any two cosets of $H$ in $G$,
+then:
+$$(Ha_1)^{a_1^{-1}a_2} = Ha_2$$ 
+so the action is transitive.
+
+The stabilizer of the point ``$H$'' is $H$.
+By Lemma 1, Chapter 1, 
+the stabilizer of the point ``$Ha$'' is $a^{-1}Ha$.
+If $g \in G$ is such that $g$ stabilizes every coset of $H$ in $G$,
+then we must have $g \in a^{-1}Ha$ for each $a \in G$.
+That is $g \in \Core_G(H)$.
+
+\end{proof}
+\end{proposition}
+
+
+The next proposition tells us that every transitive representation
+of a group $G$ is permutation equivalent to some coset representation.
+
+
+\begin{proposition}
+If $(G,\Omega)$ is a transitive permutation group
+and $\alpha$ is some point of $\Omega$, then
+$(G, \Omega)$ is permutation equivalent to $(G, \cos_G(G_\alpha))$
+
+\begin{proof}
+For each $\beta \in G$ Consider:
+$$ S_\beta = \{ x \in G : \alpha^x = \beta  \} $$
+If $\beta = \alpha^g$ then it's not hard to see
+that $S_{\beta}$ is a right coset of $G_{\alpha}$:
+$$ S_{\beta} = G_{\alpha} g $$
+Define $\eta : \Omega \to \cos_G(G_a)$ by $\eta(\beta) = S_\beta$
+and take $\varphi : G \to G$ to be the identity.
+We have, for any $\beta \in \Omega$ and any $x \in G$,
+if $\beta = \alpha^g$ then:
+\begin{eqnarray*}
+\eta(\beta^x) & = & S_{\beta^x} \\
+              & = & S_{\alpha^{gx}} \\
+	      & = & G_\alpha gx \\
+	      & = & G_\alpha g^{\varphi(x)} \\
+	      & = & \eta(\alpha^g)^{\varphi(x)} \\
+	      & = & \eta(\beta)^{\varphi(x)}
+\end{eqnarray*}
+Thus $\eta$ and $\varphi$ establish the desired permutation equivalence.
+\end{proof}
+\end{proposition}
+	
+\section{Imprimitive Permutation Groups}
+	
+\begin{definition}
+If $(G,\Omega)$ is a transitive permutation group and $\Delta$
+is a subset of $\Omega$ then the {\it setwise stabilizer} of $\Delta$ is:
+$$G_{\Delta} = \{ x \in G : \Delta^x = \Delta \}.$$
+\end{definition}
+
+\begin{lemma}
+If $(G,\Omega)$ is a transitive permutation group and $\Delta$
+is a block of imprimitivity, then
+$G_{\alpha} \leq G_{\Delta} \leq G$.
+for any $\alpha \in \Delta$.
+\begin{proof}
+Since $\alpha \in \Delta$, 
+for any $g \in G$ we have $\alpha^g \in \Delta^g$.
+Since $\Delta$ is a block of imprimitivity,
+if $\alpha^g = \alpha$, then $\Delta^g \cap \Delta \neq \emptyset$
+so $\Delta^g = \Delta$. That is $G_\alpha \leq G_\Delta$.
+\end{proof}
+\end{lemma}
+
+\begin{proposition}
+If $(G,\Omega)$ is a transitive permutation group and $\Delta$
+is a block of imprimitivity, then $(G_{\Delta},\Delta)$
+is a transitive permutation group.
+\begin{proof}
+Suppose that $\alpha, \beta \in \Delta$.
+Since $(G,\Omega)$ is transitive, there is some $g \in G$
+such that $\alpha^g = \beta$. 
+Since $\alpha^g \in \Delta^g$ and $\beta \in \Delta$,
+we must have $\Delta^g \cap \Delta \neq \emptyset$.
+But $\Delta$ is a block of imprimitivity,
+so this implies that $\Delta^g = \Delta$. 
+That is $g \in G_{\Delta}$,
+so $G_{\Delta}$ acts transitively on $\Delta$.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+Suppose that $(G,\Omega)$ is a permutation group and $\alpha \in \Omega$.
+For any subgroup $H$ such that $G_\alpha \leq H \leq G$, 
+the set $\alpha^H = \{\alpha^h : h \in H \}$ is a block of imprimitivity.
+\begin{proof}
+Let $\Delta = \alpha^H$.
+If $\Delta^g \cap \Delta \neq \emptyset $ for some $g \in G$
+then there must be some $ x,y \in H $ such that
+$\alpha^{xg} = \alpha^y$.
+It follows that $ g \in x^{-1} G_\alpha y \leq H $
+and $ \Delta^g = \Delta $.
+That is $ \Delta^g \cap \Delta \neq \emptyset \Rightarrow \Delta^g = \Delta$,
+so $\alpha^H$ is a block of imprimitivity. 
+\end{proof}
+\end{proposition}
+
+\begin{lemma}
+If $(G, \Omega)$ is a transitive permutation group
+and $\alpha$ is some point of $\Omega$,
+then $G_{\alpha^H} = H$
+for any $H$ such that $G_\alpha \leq H \leq G$.
+\begin{proof}
+Let $\Delta = \alpha^H$.
+Clearly $H \leq G_{\Delta}$.
+To show that $H = G_\Delta$ it suffices to show that $G_\alpha$
+and $G_\Delta$ have the same index in $H$.
+Since $\alpha^H$ is an orbit of $H$ on $\Omega$,
+the permutation group $(H,\alpha^H)$ is transitive.
+Since $G_\alpha \leq H$, 
+the stabilizer of the point $\alpha$ in $(H,\alpha^H)$
+is $H \cap G_\alpha = G_\alpha$.
+Thus by the orbit stabilizer theorem we have
+$\Delta = [H : G_\alpha]$.
+
+On the other hand, by proposition 11 and 12,
+$\Delta$ is a block of imprimitivity
+and $(G_{\Delta}, \Delta)$ is a transitive permutation group.
+By lemma 3 we have $G_\alpha \leq G_\Delta$ 
+so the stabilizer of the point $\alpha$ in $(G_\Delta, \Delta)$
+is $G_\Delta \cap G_\alpha = G_\alpha$.
+So again by the orbit stabilizer lemma we have
+$|\Delta| = [G_{\Delta}: G_{\alpha}]$.
+The result follows.
+
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+If $(G,\Omega)$ is a transitive permutation group,
+$\Delta$ is a block of imprimitivity,
+and $\alpha$ is any point of $\Delta$,
+then $\alpha^{G_{\Delta}} = \Delta$.
+\begin{proof}
+Clearly $\alpha^{G_{\Delta}} \leq \Delta$.
+Let $H = G_{\Delta}$.
+We have $G_{\alpha} \leq H \leq G$
+and $(H,\alpha^H)$ is a transitive permutation group
+equivalent to $(H,\Cos_H(G_\alpha))$.
+Since $(G_{\Delta}, \Delta)$ is also a transitive permutation group
+equivalent to $(H, \Cos_H(G_\alpha))$
+we must have $|Delta| = |alpha^H|$.
+Since $\alpha^H \leq \Delta$, this implies that $\alpha^H = \Delta$.
+
+\end{proof}
+
+\end{lemma}
+
+Let $(\cS, \leq)$ be the set of subgroups of $G$ containing $G_\alpha$,
+partially ordered by the subgroup relation.
+Let $(\cP, \subseteq)$ be the set of blocks of imprimitivity containing $\alpha$,
+partially ordered by the subset relation.
+
+\begin{proposition}
+$(\cS, \leq)$ is order isomorphic to $(\cP, \subseteq)$
+
+\begin{proof}
+Let $\Phi : \cS \to \cP$ be given by
+$\Phi(\Delta) = G_{\Delta}$
+and let $\Psi : \cP \to \cS$ be given by
+$\Psi(H) = \alpha^H$
+Making use of lemma ?? and ??,
+for any $H \in \cS$ we have:
+$$ \Phi \circ \Psi(H) = \Phi(\alpha^H) = G_{\alpha^H} = H $$
+and for any $\Delta \in \cP$ we have:
+$$ \Psi \circ \Phi(\Delta) = \Psi (G_{\Delta}) = \alpha^{G_{\Delta}} = \Delta $$
+so $\Phi$ and $\Psi$ are inverses.
+To see that $\Phi$ is order preserving note that:
+$$ G_{\Delta_1} \leq G_{\Delta_2} 
+\Longleftrightarrow \alpha^{G_{\Delta_1}} \leq \alpha^{G_{\Delta_2}}
+\Longleftrightarrow \Delta_1 \subseteq \Delta_2  $$
+\end{proof}
+\end{proposition}
+
+
+
+\begin{proposition}
+Let $(G,\Omega_1)$ and $(G,\Omega_2)$ be two transitive representations
+of $G$. For any $\alpha \in \Omega_1$, $\beta \in \Omega_2$,
+the permutation groups $(G,\Omega_1)$ and $(G,\Omega_2)$
+are permutation equivalent if and only if there is an automorphism of $G$
+carrying $G_\alpha$ to $G_\beta$.
+\begin{proof}
+Suppose that $(G, \Omega_1)$ and $(G, \Omega_2)$ are permutation equivalent.
+Let $\varphi: G \to G$ and $\eta : \Omega_1 \to \Omega_2$ be the maps
+establishing the equivalence. 
+Let $\gamma = \eta(\alpha)$.
+Clearly $G_\gamma = \varphi(G_\alpha)$.
+By transitivity there must be some $g \in G$ such that $\beta = \gamma^g$.
+Let $\vartheta_g : G \to G$ be the map: $x \mapsto g^{-1} x g$.
+We have:
+\begin{eqnarray*} 
+G_\beta & = & g^{-1}G_\gamma g \\
+        & = & \vartheta(G_\gamma) \\
+	& = & \vartheta \circ \varphi (G_\alpha)
+\end{eqnarray*}
+So $\vartheta \circ \varphi$ carries $G_\alpha$ to $G_\beta$.
+
+For the other direction, let $\psi$ be the map carrying $G_\alpha$
+to $G_\beta$. By proposition 1,
+$(G, \Omega_1)$ is permutation equivalent to $(G, \cos(G_\alpha))$
+and $(G, \Omega_2)$ is permutation equivalent to $(G, \cos(G_\beta))$.
+Take $\varphi = \psi$ and let 
+$\eta: \cos(G_\alpha) \to \eta(G_\beta)$ be given by
+$(G_\alpha) g \mapsto (G_\beta) \psi(g)$.
+For any $x \in G$ we have:
+\begin{eqnarray*}
+\eta({(G_\alpha g)}^x) & = & \eta((G_\alpha) gx) \\
+                     & = & (G_\beta) \psi(gx)  \\
+		     & = & {(G_\beta) \psi(g)}^{\psi(x)} \\
+		     & = & \eta((G_\alpha) g)^{\varphi(x)}
+\end{eqnarray*}
+thus $\varphi$ and $\eta$ establish a permutation equivalence between
+$(G, \cos(G_\alpha)$ and $(G, \cos(G_\beta)$ and hence between
+$(G, \Omega_1)$ and $(G, \Omega_2)$.
+\end{proof}
+\end{proposition}
+
+Define an equivalence relation on the set of subgroups of $G$
+as follows: $H_1 \sim H_2$ if and only if there is an automorphism of $G$
+carrying $H_1$ to $H_2$. 
+Let $\cZ$ denote the equivalence classes of this relation.
+Define a partial order on $\cZ$
+by $[H_1] \leq [H_2]$ if and only if there is some $\tilde{H_1} \in [H_1]$ and some
+$\tilde{H_2} \in [H_2]$ such that $\tilde{H_1} \leq \tilde{H_2}$. 
+
+The previous result tells us that, upto permutation equivalence,
+the essential information about the transitive representations of $G$ 
+is contained in $(\cZ, \leq)$. In particular all the transitive representations
+of $G$ are to be found as quotients of the right regular representation.
+
+\section{Sabidussi's Construction}
+
+% Better make sure to discuss the difference between
+% isomorphic as graphs and isomorphic as $G$-graphs.
+
+We saw in the last section that
+every permutation group is equivalent to
+one of the form $(G,\cos_G(H))$.
+Thus, upto isomorphism, transitive permutation groups are 
+uniquely determined by pairs of groups $(G,H)$ 
+with $H$ a subgroup of $G$.
+In this section and the next
+we shall see that upto isomorphism,
+a symmetric graph is uniquely
+determined by a triple $(G,H,a)$ 
+where $H$ is a subgroup of $G$ 
+and $a \in G \backslash H$ is an involution.
+
+Given a triple $(G,H,a)$, the idea is to construct
+a graph whose vertices are the cosets of $H$ in $G$.
+We call such a graph a {\it coset graph}.
+The idea of a coset graph originally goes back to Sabidussi
+who was studying vertex transitive graphs.
+Sabidussi's construction was essentially 
+a generalization of the {\it Cayley graph} construction.
+
+\begin{definition} (Cayley Graph)
+Given a group $G$ and a subset $D \subseteq G$ the {\it Cayley graph},
+$\Cay(G,D)$ is the directed graph with vertices the elements of $G$
+and arc set $\{(x,y) : xy^{-1} \in D \}$
+\end{definition}
+
+A Cayley Graph will contain no loops,
+provided that $1 \not\in D$.
+A Cayley Graph is simple if and only if 
+the set $D$ is closed under taking inverses,
+and connected if and only if $D$ is a generating set for $G$.
+The vertices are the elements of the group $G$,
+and the action of $G$ on the vertices is permutation equivalent 
+to the right regular representation of $G$.
+
+Not every vertex transitive graph is a Cayley Graph.
+Sabidussi's idea was to generalize Cayley's construction by considering the 
+action of $G$ on the cosets of some non-trivial subgroup $H$.
+
+\begin{definition} (Sabidussi Graph)
+Given a group $G$, a subgroup $H$, and a set $D \subseteq G$, 
+the Sabidussi graph, $\Sab(G,H,D)$, 
+is the directed graph with vertex set $\cos_G(H)$ 
+and arc set $\{(Hx,Hy) : xy^{-1} \in D\}$
+\end{definition}
+
+A Sabidussi graph will contain no loops
+provided that $D \cap H = \emptyset$.
+A Sabidussi Graph is simple if and only if
+$D$ is closed under taking inverses
+and connected if and only if $D \cup H$ generates $G$.
+The vertices of the Sabidussi graph are  
+the cosets of the subgroup $H$ in $G$,
+and the action of $G$ on the vertices is $(G,cos(H))$.
+
+\begin{proposition}[Sabidussi]
+Sabidussi Graphs are vertex transitive.
+Every vertex transitive graph is isomorphic to a Sabidussi Graph.
+\begin{proof}
+Let $\Gamma = \Sab(G,H,D)$ be any sabidussi graph
+(simple and without loops).
+The group $G$ has a natural transitive action on the vertices of $\Gamma$
+given by $Hx^g = Hxg$.
+To prove that $\Gamma$ is $G$-vertex transitive,
+we must check that this action preserves the adjacency structure of $\Gamma$.
+
+Suppose that $(Hx,Hy)$ is an arc of $\Gamma$,
+so $xy^{-1} \in D$.
+Since $xg(yg)^{-1} = xgg^{-1}y^{-1} = xy^{-1} \in D$
+for any $g$, 
+it follows immediately that $(Hx,Hy)^g = (Hxg,Hyg)$
+is also an arc of $\Gamma$.
+This proves the first part.
+
+Now, let $\Gamma$ be any $G$-vertex transitive graph.
+It follows that $(G, V \Gamma)$ is permutation
+equivalent to $(G, \cos_G(H))$ for some $H < G$.
+Let $\eta : \Omega \to \cos_G(H)$ be the map establishing
+the permutation equivalence, and let $\mu = \eta^{-1}$
+
+Let $N$ be the neighbourhood of the vertex $\mu(H)$, and let 
+$$D = (\bigcup_{\alpha \in N} \eta(\alpha)) \diagdown H$$
+We will show that $\Gamma \cong \Sab(G,H,\eta(D))$.
+
+The map $\eta : V \Gamma \to \cos_G(H)$
+establishes a permutation isomorphism between the
+vertices of $\Gamma$ and the vertices of $\Sab(G,H,D)$.
+Let $(\alpha, \beta)$ be any arc of $\Gamma$.
+By $G$-vertex transitivity, we can find some $g \in G$
+such that $\alpha^g = \mu(H)$ and $\beta^g \in E$.
+Suppose that $\eta(\alpha) = Hx$ and $\eta(\beta) = Hy$.
+We must check that $xy^{-1} \in D$
+
+Since $\eta$ is a permutation isomorphism,
+it follows that $\eta(\alpha^g) = Hxg$
+and $\eta(\beta^g) = Hyg$.
+Since $\beta^g \in E$ we must have 
+$xg(yg)^{-1} = xgg^{-1}y = xy^{-1}\in D$.
+The result follows.
+
+
+\end{proof}
+
+\end{proposition}
+
+\section{A Group Theoretic Characterization of Symmetric Graphs}
+
+Since symmetric graphs are vertex transitive,
+every symmetric graph is a Sabidussi graph.
+However, not every vertex transitive graph is symmetric,
+so we expect there to be some extra conditions on
+the subset $D$ in the symmetric case.
+
+Recall from Chapter 1 that every symmetric graph 
+is an orbital graph.
+In the first section of this chapter, we saw that if $H < G$
+is the stabilizer of some point in $\Omega$, then $(G,\Omega)$
+is permutation equivalent to $(G,\cos_G(H))$.
+We shall see in this section, the orbitals of $(G,\Omega)$
+actually correspond to {\it double cosets} of $H$ in $G$
+
+\begin{definition}
+If $H$ is a subgroup of $G$, then a {\it double coset} of $H$ in $G$
+is a subset of $G$ of the form
+$HxH = \{ h_1 x h_2 : h_1, h_2 \in H \}$
+for some $x \in G$.
+\end{definition}
+
+\begin{lemma} 
+Each double coset of $H$ in $G$ is a union of right cosets of $H$.
+The double cosets of $H$ in $G$ form a partition of $G$.
+\begin{proof}
+The first part is obvious since $HxH = \bigcup_{h \in H} Hxh$
+for any $x \in G$.
+For each element $g \in G$ it is clear that $g \in HgH$
+so $\bigcup_{x \in G} HxH = G$.
+If $HxH \bigcap HyH \neq \emptyset$ 
+then $h_1 x h_2 = h_3 y h_4 $ for some $h_1,h_2,h_3,h_4 \in H$.
+It follows that $y = h_1^{-1} h_3 x h_4 h_2^{-1}$ 
+and $HyH = H h_1^{-1} h_3 x h_4 h_2^{-1} H = HxH$.
+This shows that any two double cosets are equal or disjoint,
+so the double cosets partition $G$ as claimed.
+\end{proof}
+\end{lemma}
+
+\begin{proposition}[Lorimer]
+For any permutationg group $(G,\Omega)$ with point stabilizer $H$, 
+the orbitals are in natural bijection with the double cosets of $H$ in $G$.
+The self-paired orbitals correspond to those 
+double cosets which contain an involution.
+\begin{proof}
+From the first section in this chapter we know that $(G,\Omega)$
+is permutation equivalent to $(G,\cos_G(H))$.
+Recall from chapter 1 that the orbitals of a permutation group
+are in bijection with the orbits of the point stabilizer.
+We must show that orbit of $(H,\cos_G(H))$
+corresponds to a double coset of $H$ in $G$.
+
+Let $\kappa$ be the map $Hx \mapsto HxH$.
+Suppose that $Hx$ and $Hy$ are in the same orbit
+of $(H,\cos_G(H))$.
+Then there is some $h \in H$ such that $Hxh = Hy$.
+It follows that $y \in Hxh \subset HxH$.
+That is $HyH = HxH$ and so $\kappa(Hx) = \kappa(Hy)$.
+
+Conversly, suppose that $\kappa(Hx) = \kappa(Hy)$
+for some pair of cosets $Hx$ and $Hy$.
+Then $x \in HyH$ and so $x = h_1 y h_2$ for some 
+$h_1, h_2 \in H$.
+It follows that $Hx = Hyh_2$,
+that is $Hx$ and $Hy$ lie in the same orbit of 
+$(H,\cos_G(H))$.
+Since $\kappa$ is surjective,
+this proves the first part. 
+
+Suppose that $a \in G$ is such that $a^2 = 1$ and $a \not\in H$.
+Since $(H, Ha)^a = (Ha, Ha^2) = (Ha, H)$, it follows that 
+the orbital $\Delta$ of $(G,\cos_G(H))$ 
+containing $(H,Ha)$ is self-paired.
+Clearly $a \in HaH = \kappa(Ha)$,
+so the double coset associated with $\Delta$ contains an involution.
+
+Conversely, if the double coset $HxH$ contains 
+an involution $a$, then $HxH = HaH = \kappa(Ha)$.
+Thus $HxH$ is associated with the orbital containing
+$(H,Ha)$ which is self-paired.
+This proves the second part.
+\end{proof}
+\end{proposition}
+
+\begin{theorem} [Lorimer] For any pair of groups $H \leq G$ and any $a \in G$
+such that $a \not\in H$ and $a^2 = 1$, the Sabidussi graph
+$\Sab(G,H,HaH)$ is $G$-symmetric. Furthermore every symmetric graph
+is of this form for some $G$, $H$ and $a$.
+\begin{proof} 
+Let $\Gamma = \Sab(G,H,HaH)$.
+By proposition ?? $\Gamma$ is $G$-vertex transitive.
+Since $HaH$ is an orbit of the action of $H$
+on $\Cos_G(H)$, the graph $\Gamma$ is also $G$-locally transitive.
+
+Suppose that $\Gamma$ is a $G$-symmetric graph.
+Let $\alpha$ be any vertex, and let $H = G_\alpha$.
+By proposition ??, the permutation group $(G, V \Gamma)$ 
+is equivalent to $(G, \Cos_G(H))$.
+Let $\eta : V \Gamma \to \Cos_G(H))$ be any map
+inducing this equivalence.
+Let $\beta$ be any neighbour of $\alpha$ in $\Gamma$
+and let $a \in G$ be such that $(\alpha,\beta)^a = (\beta,\alpha)$.
+Clearly $a$ is an involution and $\eta(\beta) = Ha$.
+
+Let $\Gamma' = \Sab(G,H,HaH)$.
+The map $\eta$ induces a permutation equivalence
+between the vertices of $\Gamma$ and the vertices of $\Gamma'$.
+To show that $\Gamma$ is isomorphic to $\Gamma'$
+we must show that $\eta$ preserves adjacency.
+
+Let $(\omega, \delta)$ be any arc of $\Gamma$.
+Let $g \in G$ be such that $\omega^g = \alpha$.
+Then $\delta^g$ is some neighbour of $\alpha$.
+Thus there exists $h \in H$ such that $\delta^{gh} = \beta$.
+Therefore $\eta(\delta^{gh}) = \eta(\beta) = Ha$.
+Since $\eta$ is a permutation equivalence,
+$\eta(\delta^{gh}) = \eta(\delta)^{gh}$,
+so $\eta(\delta) = Ha^{{(gh)}^{-1}} = Hah^{-1}g^{-1}$.
+Simmilarly, $\eta(\omega^g) = \eta(\omega)^g$
+so $\eta(\omega) = H^{g^{-1}} = Hg^{-1}$.
+Now $ah^{-1}g^{-1}g = ah^{-1} \in HaH$
+so $(\eta(\omega),\eta(\delta))$ is an arc of $\Gamma'$.
+The result follows.
+
+
+
+\end{proof}
+\end{theorem}
+
+%\begin{proposition}
+%$\Gamma = \Sab(G,H,HaH)$ is connected if and only if together
+%$H$ and $a$ generalte $G$
+%\end{proposition}
+
+\begin{lemma}
+$|HxH| = |H||H|/|x^{-1}Hx \bigcap H|$ Fix me
+\begin{proof}
+The mapping $HxH \to x^{-1}HxH$ given by $h_1 x h_2 \mapsto x^{-1} h_1 x h_2$
+      is bijective, so $|HxH| = |x^{-1}HxH|$. 
+      But for the rule for the product of two subgroups: 
+      $|x^{-1}HxH| = |x^{-1}Hx||H|/|x^{-1}Hx \bigcap H|$,
+      of course, $|x^{-1}Hx| = |H|$. and the result follows.
+\end{proof}
+\end{lemma}
+
+\begin{proposition}
+If $\Gamma$ is a $G$-symmetric graph isomorphic to the Sabidussi
+graph $Sab(G,H,HaH)$ the the stabilizer of an arc of $\Gamma$
+is isomorphic to $a^{-1}Ha \cap H$ and the valency of $\Gamma$
+is $ |H|/|x^{-1}Hx \bigcap H| $.
+\begin{proof}
+Consider the arc $(H,Ha)$. The stabilizer of this arc is
+the intersection between the stabilizer of the vertex ``$H$''
+and the stabilizer of the vertex ``$Ha$''.
+But the stabilizer of the vertex ``$H$'' is just $H$
+and the stabilizer of the vertex ``$Ha$'' is $a^{-1}Ha$.
+So the stabilizer of the arc is $a^{-1}Ha \cap H$.
+
+Consider the action of $H$ on the neighbours 
+of the vertex ``$H$''.
+Since $\Gamma$ is symmetric, this action is transitive.
+If ``$Ha$'' is any neighbour of ``$H$'',
+then the action of $H$ on the neighbours of ``$H$''
+is permutation equivalent to the action of $H$
+on the cosets of the stabilizer of the arc $(H,Ha)$.
+Since the stabilizer of the arc $(H,Ha)$ is $a^{-1}Ha \cap H$
+it follows that the valency of $\Gamma$ is
+$[H : a^{-1}Ha \cap H] = |H|/|x^{-1}Hx \bigcap H|$
+
+\end{proof}
+
+\end{proposition}
+
+In some sense the valancy of a symmetric graph is
+measuring the extent to which a subgroup fails to be normal.
+
+
+\section{Quotient Graphs}
+
+In the first section of this Chapter,
+we determined, for any two transitive permutation groups
+$(G, \Omega_1)$ and $(G,\Omega_2)$, 
+the conditions under which there exists a
+$G$-homomorphism from $(G,\Omega_1)$ to $(G,\Omega_2)$.
+
+We saw that if $(G,\Omega_1)$
+is permutation equivalent to $(G,\cos_G(H))$ 
+for some $H < G$,
+and $(G,\Omega_2)$ is permutation equivalent
+to $(G,\cos_G(K))$ for some $K < G$,
+then there is a $G$-homomorphism from $(G,\Omega_1)$
+to $(G,\Omega_2)$ if and only if $H < K < G$.
+
+In this section we give analogous conditions
+under which there exists a $G$-homomorphism
+from a $G$-symmetric graph $\Gamma$
+to a $G$-symmetric graph $\Sigma$.
+
+\begin{theorem} [Lorimer]
+If $\Gamma$ is a $G$-symmetric graph isomorphic to $\Sab(G,H,HaH)$
+and $\Sigma$ is a quotient of $\Gamma$,
+then $\Sigma$ is isomorphic to $\Sab(G,K,KaK)$ for some $H < K < G$.
+\begin{proof}
+Let $\eta : V \Gamma \to \Cos_G(H)$ be the map inducing
+the isomorphism between $\Gamma$ and $\Sab(G,H,HaH)$.
+Let $\pi : V \Gamma \to V \Sigma$ be the map
+inducing the homomorphism between $\Gamma$ and $\Sigma$.
+Let $\alpha = \eta^{-1}(H)$,
+let $B = \pi(\alpha)$ and let $\Delta = \pi^{-1}(B)$.
+
+By proposition ?? $\Delta$ is a block of imprimitivity.
+If $K = G_{\Delta}$ then the permutation group $(G, V \Sigma)$
+is equivalent to $(G, \cos_G(K))$.
+Let $\mu : V \Sigma \to \cos_G(K)$ be any map
+inducing the equivalence.
+If $\Sigma' = \Sab(G,K,KaK)$ then $\mu$ induces
+a permutation equivalence between the vertices of $\Sigma$
+and the vertices of $\Sigma'$.
+We must check that it preserves adjacency. Blah blah blah...
+
+
+\end{proof}
+\end{theorem}
+
+If $a \in K$ then the valency of the quotient is one.
+
+%Butterflies in bloom. See how the grow from a small seed into such majestic beings?

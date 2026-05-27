@@ -1,0 +1,357 @@
+\documentclass[12pt]{amsart}
+\usepackage[all]{xy} % for commutative diagrams
+\usepackage{amsmath} % various goodies
+\usepackage{amsthm} % some stuff for theorem numbering
+\usepackage{amsfonts}
+
+%% Theorem-type environments.
+% The first parameter to \newtheorem is what the environment is called in the 
+% LaTeX source. (What goes into the braces after \begin and \end.)
+% The second is the name that shows up in the text.
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+% (Criterion, Algorithm)
+
+\theoremstyle{definition} 
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+% (Condition, Problem)
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+% (Notation, Claim, Summary, Acknowledgement, Case, Conclusion)
+
+%% Math operators (easy thanks to amsmath)
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\core}{Core}
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\cay}{Cay}
+\DeclareMathOperator{\sab}{Sab}
+\DeclareMathOperator{\fib}{fiber}
+
+
+
+% Commands:
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cN}{\mathcal{N}}
+
+% Lazy:
+\newcommand{\travH}{\{ \tau_1, \tau_2, \dots \tau_n \}}
+\newcommand{\travR}{\{ t_1, t_2, \dots t_b \}}
+\newcommand{\rangen}{\{1 \dots n \}}
+
+\begin{document}
+
+\section{Description of the problem}
+We would like to understand the ways in which a symmetric graph
+$(G, \Gamma)$ can be ``unfolded'' into a larger imprimitive symmetric graph
+$(\widetilde{G}, \widetilde{\Gamma})$ which admits the original graph as a quotient.
+On a group theoretic level, if we knew the subgroup structure of $G$
+and we knew all the groups $\widetilde{G}$ which have $G$ as a
+composition factor then in a sense we would ``know'' all the possible unfoldings.
+What would still be lacking is a {\it combinatorial} understanding
+of how the structure of the new graph is related to that of the original.
+
+The {\it three-arc graph construction} gives a nice description
+of the graph $\widetilde{\Gamma}$ in terms of the graph $\Gamma$
+in the special case where $\Gamma \cong \sab(G,H,a)$,
+$\widetilde{\Gamma} \cong \sab(G,K,a)$ and $K \cong a^{-1}Ha \cap H$.
+That is, the special case where the stabilizer of an arc of $\Gamma$
+is isomorphic to the stabilizer of a vertex of $\widetilde{\Gamma}$.
+One may ask whether there other {\it group theoretic} assumptions
+which may be imposed on a pair of symmetric graphs $(\Gamma, \widetilde{\Gamma})$
+which will yield a nice description of $\widetilde{\Gamma}$ in terms of $\Gamma$.
+
+I have considered the case where $\Gamma \cong \sab(G,H,a)$,
+$\widetilde{\Gamma} \cong \sab(G,K,a)$ 
+and there exists a normal subgroup $N$ of $G$ such that
+$G$ is a semidirect product of $N$ by $H$.
+Here are some rough notes.
+
+\section{Labelling technique}
+
+Every $g \in G$ has a unique expression of the form $g = (h,n)$
+where $h \in H$ and $n \in N$.
+Since the elements of $N$ form a traversal of the cosets of $H$ in $G$,
+the vertices of $\Gamma$ may labelled by elements of $N$
+and in fact form a group.
+The action of $G$ on the vertices of $\Gamma$ is given by
+$m^{(h,n)} = h^{-1}mhn$.
+Let us take $\cD$ to be the the design induced on the fiber of the
+vertex of $\Gamma$ which is labelled by the identity of $N$.
+
+The points of $\widetilde{\Gamma}$ may be labelled by ordered pairs of the form
+$(x, m)$ where $x$ is a coset of $K$ and $m \in N$.
+The action of $G$ on the points of $\widetilde{\Gamma}$ is then given by: 
+$(x,m)^{(h,n)} = (x^h, h^{-1}mhn)$. 
+This is indeed an action, since:
+\begin{eqnarray*}
+{(x,m)^{(h_1,n_1)}}^{(h_2,n_2)} & = & (x^{h_1}, h_{1}^{-1} m h_1 n_1)^{(h_2,n_2)} \\
+                                & = & (x^{h_1 h_2}, h_{2}^{-1}h_1^{-1} m h_1 n_1 h_2 n_2) \\
+                      & = & (x^{h_1 h_2}, h_{2}^{-1}h_1^{-1} m h_1 h_2 h_2^{-1} n_1 h_2 n_2) \\
+		      & = & (x,m)^{(h_1 h_2, h_2^{-1} n_1 h_2 n_2)} \\
+		      & = & (x,m)^{(h_1,n_1)(h_2,n_2)} \\
+\end{eqnarray*}
+
+
+\section{Self-paired orbital on the flags $\cD$}
+
+I will show that there is a self-paired orbital on the flags
+of $\cD$ which can be used to reconstruct $\widetilde{\Gamma}$
+from $\Gamma$.
+
+Suppose that $((x,p), (y,b))$ is an arc $\widetilde{\Gamma}$.
+Then $(p,q)$ is an arc of the quotient $\Gamma$.
+Making use of the automorphism $(1,p^{-1})$ of $\widetilde{\Gamma}$
+we have that $((x,p), (y,b))^{(1,p^{-1})} = ((x,1), (y,bp^{-1}))$ 
+is also an arc of $\widetilde{\Gamma}$,
+and so $(x,bp^{-1})$ is a flag of $\cD$
+
+Since $\widetilde{\Gamma}$ is assumed to be a simple graph,
+if $((x,p), (y,b))$ is an arc of $\widetilde{\Gamma}$
+then so is $((y,b),(x,p))$.
+Making use of the automorphism $(1,b^{-1})$ we have that
+and $((y,b),(x,p))^{(1,b^{-1})} = ((y,1), (x,pb^{-1}))$
+is an arc of $\widetilde{\Gamma}$.
+and so $(y, pb^{-1})$ is a flag of $\cD$.
+
+What we have done is ``decomposed'' the arc $((x,p), (y,b))$
+of $\widetilde{\Gamma}$ into the arc $(p,q)$ of $\Gamma$
+together with the pair of flags $((x,bp^{-1}),(y, pb^{-1}))$
+of $\cD$.
+Let $\Delta$ be the {\it orbital} on the flags of $\cD$
+which contains the pair $((x,bp^{-1}),(y, pb^{-1}))$.
+That is $\Delta = \{ ((x,bp^{-1}),(y, pb^{-1}))^h : h \in H \}$
+\hfill \break
+
+Suppose we choose a different arc $((w,q),(z,d))$ of $\widetilde{\Gamma}$.
+Then by arguments identical to those above $(q,d)$ is an arc of $\Gamma$
+and $(w,dq^{-1})$ and $(z,qd^{-1})$ are flags of $\cD$.
+Since $\widetilde{\Gamma}$ is $G$-arc transitive, we can find some $g = (h,n)$
+such that $((x,p),(y,b))^{(h,n)} = ((w,q),(z,d))$.
+That is:
+\begin{eqnarray*}
+w & = & x^h \\
+z & = & y^h \\
+q & = &  h^{-1}phn \\
+d & = &  h^{-1}bhn \\
+\end{eqnarray*}
+
+So: 
+\begin{eqnarray*}
+(w,dq^{-1}) & = & (x^h, h^{-1}bhnn^{-1}h^{-1}p^{-1}h) \\
+            & = & (x^h, h^{-1}bp^{-1}h) \\
+	    & = & (x,bp^{-1})^h.
+\end{eqnarray*}
+Simmilarly:
+\begin{eqnarray*}
+(z,qd^{-1}) & = & (y^h, h^{-1}phnn^{-1}h^{-1}b^{-1}h) \\
+            & = & (y^h, h^{-1}pb^{-1}h) \\
+	    & = & (y,pb^{-1})^h.
+\end{eqnarray*}
+
+\newpage
+It follows immediately that $((w,dq^{-1}),(z,qd^{-1})) \in \Delta$.
+Thus, any arc of $\widetilde{\Gamma}$ can be ``decomposed''
+into an arc of $\Gamma$ together with a pair of flags of $\cD$
+contained in the orbital $\Delta$.
+\hfill \break
+
+I will now show that this orbital $\Delta$ on the flags of $\cD$
+is self-paired.
+Since $\widetilde{\Gamma}$ is simple.
+There must be some $g = (h,n)$ which ``flips'' the arc
+$((x,p), (y,b))$. That is, there must be some $g = (h,n)$
+such that $((x,p), (y,b))^{(h,n)} = ((y,b), (x,p))$.
+By an argument identical to the one on the previous page, 
+we must have that
+
+\begin{eqnarray*}
+(y,pb^{-1}) & = & (x,bp^{-1})^h \\
+(x,bp^{-1}) & = & (y,pb^{-1})^h
+\end{eqnarray*}
+
+\hfill \break
+This shows that the orbital $\Delta$ is self-paired.
+
+\section{Reconstruction}
+Given $\Gamma$ and $\cD$ together with a self paired orbital $\Delta$
+on the flags of $\cD$ it should be possible to reconstruct $\widetilde{\Gamma}$.
+Let $N(1)$ denote the neighbourhood of the vertex ``$1$'' of the $\Gamma$
+and let $P$ and $B$ denote the points and blocks respectively 
+of the design $\cD$.
+Let $\eta : N(1) \to B$ be some map establishing a permutation isomorphism
+between the permutation groups $(H,N(1))$ and $(H,B)$.
+
+The graph $\widetilde{\Gamma}$ can be described as the graph
+with vertex set $P \times V \Gamma$
+and arc set $((x,v), (y,w))$ such that 
+\begin{enumerate}
+\item $(v,w)$ is an arc of $\Gamma$
+\item $(x,\eta(vw^{-1})$ is a flag of $\cD$
+\item $(y, \eta(wv^{-1})$ is a flag of $\cD$
+\item $((x,\eta(vw^{-1}),(y, \eta(wv^{-1})) \in \Delta$ 
+\end{enumerate}
+\hfill \break
+
+The action of $G$ on $P \times V \Gamma$ is that given in section 2.
+Since $\cD$ is $H$-flag transitive,
+for any pair of vertices $(x,p)$ and $(y,q)$,
+we can find some $h \in H$ such that $x^h = y$. 
+Now: 
+\begin{eqnarray*}
+(x,p)^{(h,h^{-1}p^{-1}hq)} & = & (x^h, h^{-1}phh^{-1}p^{-1}hq) \\
+                           & = & (y,q).
+\end{eqnarray*}
+So this action is transitive.
+\hfill \break
+
+We need to check that this action is well defined on the arcs.
+Suppose that $((x,p),(y,q))$ is any arc and $(h,n)$ is 
+any element of $G$.
+We need to check that 
+$((x,p),(y,q))^{(h,n)}$ is also an arc.
+
+Since $((x,p),(y,q))$ is an arc of $\widetilde{\Gamma}$
+we know that $(p,q)$ is an arc of $\Gamma$
+and that: 
+$$((x,\eta(pq^{-1}), (y,\eta(qp^{-1})) \in \Delta$$
+\hfill \break
+
+The arc $((x,p),(y,q))^{(h,n)}$ of $\widetilde{\Gamma}$
+decomposes into the arc $(p,q)^{(h,n)}$ of $\Gamma$.
+and the pair of flags: $$((x,\eta(pq^{-1})^h, (y,\eta(qp^{-1}))^h \in \Delta$$
+So the action is well-defined on arcs.
+\hfill \break
+
+Finally we need to check that this action is transitive on the arcs.
+If $((x,p),(y,b))$ and $((w,q),(z,d))$ are any two arcs of $\widetilde{\Gamma}$
+then we must have: 
+
+$$((x,\eta(pb^{-1}),(y,\eta(bp^{-1})) \in \Delta$$
+
+and:  
+
+$$((w,\eta(qd^{-1}),(z,\eta(dq^{-1})) \in \Delta.$$
+
+\hfill \break
+So there must be some $h \in H$ such that:
+$$((x,\eta(pb^{-1}),(y,\eta(bp^{-1}))^h = ((w,\eta(qd^{-1}),(z,\eta(dq^{-1})).$$
+
+\hfill \break
+Since $\eta$ is a permutation homomorphism,
+$\eta(bp^{-1})^h = \eta(dq^{-1})$ implies that
+$\eta(h^{-1}bp^{-1}h) = \eta(dq)$ which implies that
+$h^{-1}bp^{-1}h = dq^{-1}$.
+Now we have: 
+\begin{eqnarray*}
+(x,p)^{(h,h^{-1}p^{-1}hq)} & = & (x^h, h^{-1}phh^{-1}p^{-1}hq) \\
+                           & = & (w,q)
+\end{eqnarray*}
+And: 
+\begin{eqnarray*}
+(y,b)^{(h,h^{-1}p^{-1}hq)} & = & (y^h, h^{-1}bhh^{-1}p^{-1}hq) \\
+                           & = & (z, h^{-1}bp^{-1}hq) \\
+			   & = & (z, dq^{-1}q) \\
+			   & = & (z,d) \\
+\end{eqnarray*}
+Thus the action is transitive on the arcs as claimed.
+
+\newpage
+\section{Another Special Case}
+
+Suppose that $\Gamma = \sab(G,H,a)$.
+Let $\overline{H} = a^{-1}Ha \cap H$,
+so the local permutation group induced at each vertex of $\Gamma$
+is equivalent to $(H, \cos(\overline{H}))$.
+Suppose further that there is some $K$ such that $\overline{H} < K < H$
+and $a \not\in K$. Then the graph $\widetilde{\Gamma} = \sab(G,K,a)$
+is an extension of $\Gamma$.
+Let $\overline{K} = a^{-1}Ka \cap K$.
+Since $K < H$ we must also have $a^{-1}Ka < a^{-1}Ha$
+so $\overline{K} \leq \overline{H}$.
+Since $\overline{H} < K$ we must also have
+$a^{-1}\overline{H}a < a^{-1}Ka$
+but since $a$ is an involution $a^{-1}\overline{H}a = \overline{H}$
+so we have $\overline{H} \leq \overline{K}$.
+That is $\overline{H} = \overline{K}$
+and the local permutation group induced at each vertex of
+$\widetilde{\Gamma}$ is $(K, \cos(\overline{H}))$.
+
+The pair $(\Gamma,\widetilde{\Gamma})$ satisfy the property that
+{\it globally} $\widetilde{\Gamma}$ is imprimitive,
+admitting $\Gamma$ as quotient, but {\it locally}
+$\Gamma$ is imprimitive, and the local permutation group of
+$\widetilde{\Gamma}$ is a quotient of the local permutation
+group of $\Gamma$. We wish to understand how $\Gamma$
+and $\widetilde{\Gamma}$ are related {\it structurally},
+and ideally find some method of constructing $\widetilde{\Gamma}$
+from $\Gamma$.
+
+As a preliminary observation, let $n = [G:H]$ be the number of vertices of $\Gamma$,
+let $v = [K:\overline{H}]$ be the valency of $\widetilde{\Gamma}$
+and let $r = [H:K]$.
+The graph $\widetilde{\Gamma}$ has $[G:K] = [G:H][H:K] = nr$
+vertices. That is, $r$ times as many vertices as $\Gamma$.
+The valency of $\Gamma$ is $[H:\overline{H}] = [H:K][K:\overline{H}] = rv$.
+That is $r$ times the valency of $\widetilde{\Gamma}$.
+Since the number of edges in a graph is equal to half the
+valency times the number of vertices, it follows that
+both $\Gamma$ and $\widetilde{\Gamma}$ have the same number of edges.
+\hfill \break
+
+The action of $G$ on the arcs of $\Gamma$ is permutation equivalent
+to $(G, \cos(\overline{H}))$.
+Since $\Gamma$ is simple, each arc $(\alpha,\beta)$ has a {\it pair}
+namely $(\beta,\alpha)$.
+The function $\varphi : A \Gamma \to A \Gamma$ 
+which sends each arc to its pair is an involution
+It also preserves the action of $G$.
+
+Now, since $\overline{H} < H < G$ the action of $G$
+on the arcs of $\Gamma$ is imprimitive.
+That is, there is some $G$-invariant partition $\cB$
+of $A \Gamma$ such that the action of $G$ on $\cB$
+is permutation equivalent to $(G, \cos(H))$.
+In fact, this is the partition $\cB = \{ B(\alpha) : \alpha \in V \Gamma \}$
+where $B(\alpha)$ is the set of all arcs who's initial vertex is $\alpha$.
+
+Let $\pi : A \Gamma \to \cB$ be the map which sends
+each arc to the block of $\cB$ containing it.
+We may define a new graph $\Sigma$ we vertex set
+$\cB$ where $p$ is adjacent to $b$ if and only if
+there is some $x \in \pi^{-1}(p)$ and some $y \in \pi^{-1}(b)$
+such that $y = \varphi(x)$.
+This new graph $\Sigma$ is in fact isomorphic to $\Gamma$.
+
+The action of $G$ on the arcs of $\Gamma$ is permutation
+isomorphic to the action of $G$ on the arcs of $\widetilde{\Gamma}$.
+Both actions are of the form $(G, \cos(\overline{H}))$
+Since $\overline{H} < K < G$ there exists some $G$-invariant partition
+$\mathfrak{B}$ of $A \Gamma$ such that the action of $G$ on $\mathfrak{B}$
+is permutation equivalent to $(G, \cos(H))$.
+The partition $\mathfrak{B}$ is a refinement of the partition $\cB$.
+
+Let $\lambda : A \Gamma \to \mathfrak{B}$ be the map hich sends
+each arc to the block of $\mathfrak{B}$ containing it.
+We may define a new graph $\widetilde{\Sigma}$ we vertex set
+$\mathfrak{B}$ where $p$ is adjacent to $b$ if and only if
+there is some $x \in \lambda^{-1}(p)$ and some $y \in \lambda^{-1}(b)$
+such that $y = \varphi(x)$.
+This new graph $\Sigma$ is in fact isomorphic to $\widetilde{\Gamma}$.
+Thus we have a method of construction $\widetilde{\Gamma}$ from $\Gamma$.
+
+\end{document}

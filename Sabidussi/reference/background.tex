@@ -1,0 +1,536 @@
+\chapter{$G$-Sets and $G$-Graphs}
+
+\section{Permutation Groups}
+
+% Definition of permutation group:
+\begin{definition}[Permutation group]
+A \emph{permutation group} is a triple $(G, \Omega, \rho)$
+where $G$ is a group, $\Omega$ is a set and $\rho$
+is a homomorphism:
+$$ \rho : G \to \Aut(\Omega). $$
+We say that $G$ {\it acts on} $\Omega$ as a group of permutations.
+The action is said to be \emph{faithful} if $\ker(\rho) = \{1\}$.
+\end{definition}
+
+% Remark on notation:
+
+We will usually neglect to mention the homomorphism $\rho$ explicitely,
+and speak of the permutation group $(G, \Omega)$.
+We write $\alpha^{\rho(g)}$ or just $\alpha^g$ to indicate
+the action of a permutation $g \in G$ on a point $\alpha \in \Omega$. 
+This allows us to compose permutations as 
+$\alpha^{(gh)} = (\alpha^{g})^{h}$
+rather than $(gh)(\alpha) = h(g(\alpha))$.
+
+If $\Delta$ is a subset of $\Omega$ and $g$ is an element of $G$, then we write
+$\Delta^g = \{ \alpha^g : \alpha \in \Delta \}$
+to indicate the image of $\Delta$ under the action of $g$.
+
+\hfill \break
+Sometimes we will call $(G,\Omega)$ a \emph{representation} 
+of $G$ as a group of permutations of $\Omega$, rather than a permutation group.
+If $|\Omega| = n$ then we say that $(G,\Omega)$ is a permutation
+representation of $G$ of degree n.
+
+% Definition: permutation equivalence:
+\begin{definition}[Permutation Equivalence]
+Two permutation groups $(G_1, \Omega_1)$ and
+$(G_2, \Omega_2)$ are said to be \emph{permutation equivalent}
+if there is an isomorphism $\varphi : G_1 \to G_2$
+and a bijection $\eta : \Omega_1 \to \Omega_2$ 
+such that for every $g \in G_1$ the following diagram commutes:
+
+% Commutative diagram using xypic:
+\centerline{
+ \xymatrix{
+ \ar[d]_{\eta} \ar[r]^g \Omega_1 & \Omega_1 \ar[d]_{\eta} \\
+ \ar[r]_{\varphi(g)} \Omega_2 & \Omega_2
+ }
+}
+\end{definition} 
+
+Permutation equivalence is an equivalence relation
+on the set of permutation representations of given group.
+If we relax the condition that $\eta$ is bijective 
+we obtain a {\it permutation homomorphism}.
+%For a fixed group $G$,
+%the set of permutation representations of $G$, 
+%together with the permutation homomorphisms form a category,
+%which we denote by $G$-Set.
+
+% Definition of transitivity
+\begin{definition}[Transitive Permutation Group]
+A permutation group  $(G, \Omega)$ is said to be \emph{transitive}
+if for any $\alpha, \beta \in \Omega$ there exist a $ g \in G $
+such that $\alpha^g = \beta$
+\end{definition}
+
+% Definition of orbit
+\begin{definition}[Orbit]
+If $(G, \Omega)$ is a permutation group and $\alpha \in \Omega$ 
+then the \emph{orbit of $\alpha$ under the action of $G$} is:
+$$ \alpha^G = \{ \alpha^x : x \in G \} $$
+\end{definition}
+
+For a transitive permutation group $\alpha^G = \Omega$.
+Otherwise $\Omega$ maybe be partitioned into orbits:
+$ \Omega = \coprod_{i = 1..n} \Omega_i $
+such that for each $i$, the permutation group $(G,{\Omega_i})$ is transitive.
+
+% category theory
+%\hfill \break
+%In category theoretic language, the transitive representations
+%of a group $G$ are precisely the objects of $G$-Set
+%which have no proper subobjects.
+
+\section{Graphs}
+
+The most general definition of a {\it graph} is a pair of sets $(V, A)$
+with $A \subseteq V \times V$.
+The elements of $V$ are refered to as the {\it vertices} of the graph
+and the elements of $A$ are refered to as {\it arcs}.
+A {\it simple graph} is a graph such that:
+$$ (\alpha,\beta) \in A \Longleftrightarrow (\beta, \alpha) \in A
+\mbox{ for all } \alpha, \beta \in V.$$ 
+
+A graph that is not simple is said to be {\it directed}.
+The term ``digraph'' is also frequenty used.
+An {\it edge} of a graph is an unordered pair $\{\alpha,\beta\}$
+where $(\alpha,\beta)$ is an arc and $\alpha \neq \beta$.
+A {\it loop} is an arc of the form $(\alpha,\alpha)$.
+In this paper we will be mostly interested
+in simple graphs without loops
+and shall use the term ``graph'' to mean
+``simple graph without loops''. We give a formal definition for ease of reference.
+
+\begin{definition} [Graph]
+A {\it graph} is a pair of sets $(V,A)$ such that:
+$$A \subseteq (V \times V) \diagdown \{ (\alpha,\alpha) : \alpha \in V \}$$
+
+and: 
+$$(\alpha,\beta) \in A \Longleftrightarrow (\beta,\alpha) \in A
+\mbox{ for all } \alpha, \beta \in V.$$
+\end{definition}
+
+When more than one graph is being discussed, we shall write
+$\Gamma = (V \Gamma, A \Gamma)$ or $\Sigma = (V \Sigma, A \Sigma)$
+so that it is clear to which graph each set of vertices and arcs belongs.
+If $\alpha$ is a vertex of some graph $\Gamma$,
+then the {\it neighbourhood} of $\alpha$ in $\Gamma$
+is the set $\Gamma(\alpha) = \{ \beta \in V \Gamma : (\alpha,\beta) \in A \Gamma \}$.
+If $\alpha$ is a vertex of the graph $\Sigma$
+then the neighbourhood of $\alpha$ in $\Sigma$ is denoted by $\Sigma(\alpha)$.
+We write $E \Gamma$ (or $E \Sigma$) to denote the set of edge of $\Gamma$ (or $\Sigma$)
+and $N \Gamma$ (or $N \Sigma$) to denote the set of neighbourhoods.
+
+\begin{definition} [Automorphism of a Graph]
+An automorphism of a graph $\Gamma$ is a bijection
+$\varphi : V \Gamma \to V \Gamma$ such that:
+$$ (\alpha,\beta) \in A \Gamma \Longleftrightarrow
+(\varphi(\alpha),\varphi(\beta)) \in A \Gamma \mbox{ for all } \alpha,\beta \in V \Gamma.$$ 
+\end{definition}
+
+The autmorphisms of a graph form a group which we denote by $\Aut(\Gamma)$.
+If $\rho : G \to \Aut(\Gamma)$ is a homomorphism
+then $(G,V \Gamma,\rho)$ is a permutation group
+and we say that $G$ acts on $\Gamma$ as a group of automorphisms.
+
+\begin{definition} [Vertex-transitive Graph]
+A vertex transitive graph is a triple $(G,\Gamma,\rho)$
+where $\rho : G \to \Aut(\Gamma)$ is a homomorphism
+and $(G,\Gamma,\rho)$ is transitive.
+\end{definition}
+
+As with permutation groups, we will often neglect to mention $\rho$
+explicitely. We shall also sometimes say that $\Gamma$ is a $G$-vertex
+transitive graph rather than $(G,\Gamma)$ is a vertex transitive graph.
+If we say simply that $\Gamma$ is a vertex transitive graph
+then we mean that $(\Aut(\Gamma),\Gamma)$ 
+is an vertex transitive graph.
+%Need to define the valency of a graph.
+%Also complete graph and bipartite graph.
+
+\section{Local Properties}
+
+\begin{definition}[Stabilizer]
+Let $(G, \Omega)$ be a transitive permutation group,
+and let $\alpha$ be any point of $\Omega$.
+The \emph{point stabilizer} of $\alpha$ is:
+$$ G_a = \{ x \in G : \alpha^x = \alpha  \} $$
+\end{definition}
+
+\begin{lemma}
+$G_{\alpha^g} = g^{-1} G_{\alpha} g$
+for any $g \in G$. 
+\begin{proof}
+Suppose that $x \in G$ is such that $(\alpha^g)^x = \alpha^g$.
+It follows that $\alpha^{gxg^{-1}} = \alpha$
+and so $gxg^{-1} \in G_\alpha$. That is $x \in g^{-1}G_\alpha g$.
+Conversely suppose that $x \in g^{-1}G_\alpha g$.
+Then $gxg^{-1} \in G_\alpha$ and so $\alpha^{gxg^{-1}} = \alpha$.
+That is $\alpha^{gx} = \alpha$, so $x \in G_{\alpha^g}$.
+\end{proof}
+\end{lemma}
+
+Since $(G,\Omega)$ is transitive, every element of $\Omega$
+may be expressed in the form $\alpha^g$ for some $g \in G$.
+Thus lemma 1 tells us that the point stabilizers of a transitive
+representation of $G$ form a family of conjugate subgroups of $G$.
+
+If $G$ acts on $\Gamma$ as a group of automorphisms
+and $G_\alpha$ is the stabilizer of the vertex $\alpha$
+then $(G_\alpha, \Gamma(\alpha))$ is a permutation group.
+
+\begin{proposition}
+if $(G, \Gamma)$ is a vertex transitive graph
+then for all $\alpha, \beta \in V \Gamma$
+the permutation groups $(G_\alpha, \Gamma(\alpha))$ and
+$(G_\beta, \Gamma(\beta))$ are permutation equivalent.
+
+\begin{proof}
+Suppose that $\beta = \alpha^g$. 
+Let $\eta : \Gamma(\alpha) \to \Gamma(\beta) $ be given by: $ \gamma \mapsto \gamma^g $,
+and let $\varphi : G_\alpha \to G_\beta $
+be given by: $ x \mapsto g^{-1} x g $
+then:
+\begin{eqnarray*}
+\eta(\gamma^x) & = & \gamma^{xg} \\
+               & = & \gamma^{gg^{-1}xg} \\
+	       & = & (\gamma^g)^{\varphi(x)} \\
+               & = & \eta(\gamma)^{\varphi(x)}
+\end{eqnarray*}	       
+for any $\gamma \in \Gamma(\alpha)$ and any $x \in G_\alpha$.
+Thus the pair of maps $(\eta,\varphi)$ establish the desired
+permutation equivalence.
+\end{proof}
+\end{proposition}
+
+If $\Gamma$ is $G$-vertex transitive,
+then for any permutation group theoretic property $\cP$
+we say that $\Gamma$ is {\it $G$-locally $\cP$}
+if $(G_\alpha, \Gamma(\alpha))$ has property $\cP$.
+
+\section{Symmetric Graphs}
+
+\begin{definition} [Symmetric Graph]
+
+A symmetric graph is a triple $(G,\Gamma,\rho)$
+where $G$ is a group, $\Gamma$ is a graph
+and $\rho$ is a homomorphism:
+$$\rho : G \to \Aut(\Gamma)$$
+such that $\Gamma$ is $G$-vertex transitive and $G$-locally transitive.
+\end{definition}
+
+Again, we won't always mention $\rho$ explicitely
+and will speak of the symmetric graph $(G,\Gamma)$, or sometimes
+the $G$-symmetric graph $\Gamma$.
+
+\begin{definition} [s-arc]
+An $s$-arc of a graph $\Gamma$ is a sequence of vertices $(v_0, v_1, ... v_s)$
+such that $v_i$ is adjacent to $v_{i+1}$ for each $i$ and $v_{i-1} \neq v_{i+1}$.
+The set of $s$-arcs of $\Gamma$ is denoted by $\Arc_s(\Gamma)$.
+\end{definition}
+
+If $G$ acts on $\Gamma$ as a group of automorphisms,
+then $G$ also acts on $\Arc_s(\Gamma)$ in a natural way:
+$$ (v_0, v_1, ... v_s)^g = (v_0^g, v_1^g, ... v_s^g)$$
+The graph $\Gamma$ is said to be $(G,s)$-arc transitive if $(G, \Arc_s(\Gamma)$
+is transitive.
+Historically there has been much interest in highly arc-transitive graphs,
+that is graphs that are $s$-arc transitive for large $s$.
+
+One of the oldest results in the area is the theorem by Tutte \cite{TUTTE1,TUTTE2},
+proved using combinatorial arguments,
+that there are no $s$-arc transitive graphs
+of valency $3$ for $s > 5$.
+More recently Weiss \cite{WEISS} was able to show, with the aid
+of the classification of finite simple groups
+that there are no $s$-arc transitive graphs,
+of any valency, for $s > 7$.
+
+Symmetric graphs have historically been characterized by their arc transitivity
+rather than their local transitivity.
+A $(G,0)$-arc transitive graph is just a $G$-vertex transitive graph.
+The next theorem shows that $(G,1)$-arc transitive graphs
+wihtout isolated vertices are symmetric graphs.
+
+\begin{proposition}
+if $(G, \Gamma)$ is a symmetric graph, the $\Gamma$ is $(G,1)$-arc transitive.
+Conversly, if $\Gamma$ contains no isolated vertices and is $(G,1)$-arc transitive,
+then $(G, \Gamma)$ is a symmetric graph.
+
+\begin{proof}
+Suppose that $(G, \Gamma)$ is a symmetric graph, then
+$G$ acts on $A \Gamma$ in the obvious way:
+$(\alpha,\beta)^x = (\alpha^x, \beta^x)$.
+Let $(\alpha_1, \beta_1)$ and $(\alpha_2, \beta_2)$
+be any two arcs.
+By the $G$-vertex transitivity of $\Gamma$ we can find a $g \in G$ such that
+$\alpha_1^g = \alpha_2$.
+Since $\beta_1 \in \Gamma(\alpha_1)$ and $g$ is an automorphism,
+we must have $\beta_1^g \in \Gamma(\alpha_1^g) = \Gamma(\alpha_2)$.
+By $G$-local transitivity we can find $h \in G_{\alpha_2}$
+such that $(\beta_1^g)^h = \beta_2$.
+It follows that
+$(\alpha_1, \beta_2)^{gh} = (\alpha_1^{gh}, \beta_1^{gh})
+= (\alpha_2, \beta_2)$.
+Thus $G$ acts transitively on the arcs of $\Gamma$.
+
+Now suppose that $\Gamma$ has no isolated vertices and $(G,A \Gamma)$
+is transitive. For any two vertices $\alpha_1$ and $\alpha_2$,
+there is some arc beginning at $\alpha_1$, say $(\alpha_1,\beta_1)$
+and some arc beginning at $\alpha_2$, say $(\alpha_2, \beta_2)$.
+By arc transitivity we can find some $g \in G$ carrying
+$(\alpha_1, \beta_1)$ to $(\alpha_2, \beta_2)$,
+and this $g$ must carry $\alpha_1$ to $\alpha_2$.
+So $\Gamma$ is $G$-vertex transitive.
+
+Suppose $\gamma_1$ and $\gamma_2$ are both elements of $\Gamma(\alpha)$.
+The $(\alpha,\gamma_1), (\alpha,\gamma_2) \in A \Gamma$.
+By arc transitivity we can find a $g \in G$ such that
+$(\alpha, \gamma_1)^g = (\alpha, \gamma_2)$
+and this $g$ must carry $\gamma_1$ to $\gamma_2$.
+Thus $\Gamma$ is $G$-locally transitive.
+The result follows.
+\end{proof}
+\end{proposition}
+
+\section{Orbital Graphs}
+
+If $(G,\Omega)$ is a transitive permutation group,
+then $G$ has a natural action on $\Omega \times \Omega$
+given by:
+$$ (\alpha,\beta)^g = (\alpha^g, \beta^g) $$
+Although $(G,\Omega)$ is transitive, $(G,\Omega \times \Omega)$
+need not be. 
+The orbits of $G$ on $\Omega \times \Omega$ are called {\it orbitals}
+
+\begin{lemma} 
+If $(G,\Omega)$ is a transitive permutation group
+and $\alpha \in \Omega$
+then there is a natural correspondence between the orbitals of $(G,\Omega)$
+and the orbits of $(G_\alpha,\Omega)$ 
+\begin{proof}
+Let $\Delta$ be any orbital of $(G,\Omega)$
+and let $(\gamma,\delta)$ be any element of $\Delta$.
+Let $g \in G$ be such that $\gamma^g = \alpha$.
+Since $\Delta$ is an orbital, it follows that
+$(\alpha,\delta^g) \in \Delta$.
+Thus every orbital of $(G,\Omega)$ contains an element
+of the form $(\alpha,\beta)$.
+
+Let $\eta : \Omega \to \Omega \times \Omega$ be the map given by
+$\beta \mapsto (\alpha, \beta)$. 
+Suppose that $\beta_1$ and $\beta_2$
+lie in the same orbit of $(G_\alpha,\Omega)$.
+Then there is some $g \in G_\alpha$ such that $\beta_1^g = \beta_2$.
+It follows that $(\alpha,\beta_1)^g = (\alpha,\beta_2)$
+and so $(\alpha,\beta_1)$ and $(\alpha,\beta_2)$ lie in the same
+orbital of $(G,\Omega)$.
+
+Conversely suppose that $(\alpha,\beta_1)$ and $(\alpha,\beta_2)$
+lie in the same orbital of $(G,\Omega)$.
+Then there is some $g \in G$ such that $(\alpha,\beta_1)^g = (\alpha,\beta_2)$.
+That is $\alpha^g = \alpha$ and $\beta_1^g = \beta_2$.
+It follows that $g \in G_\alpha$ and $\beta_1$ and $\beta_2$
+lie in the same orbit of $(G_\alpha, \Omega)$.
+Thus, the map $\eta$ in fact induces a map from the orbits of $(G_\alpha,\Omega)$
+to the orbitals of $(G,\Omega)$.
+\end{proof}
+\end{lemma}
+
+The orbital $\{ (\alpha,\alpha) : \alpha \in \Omega)$
+is given a special name. Its called the {\it diagonal} orbital.
+The {\it rank} of a permutation group is the number of orbitals.
+An orbital $\Delta$ is said to be {\it self-paired} if
+$$ (\alpha, \beta) \in \Delta \Longleftrightarrow
+   (\beta, \alpha) \in \Delta $$
+
+\begin{definition} [Orbital Graph]
+If $(G,\Omega)$ is a transitive permutation group and
+$\Delta$ is a self-paired orbital 
+then the {\it orbital graph} $\orb_\Delta(G, \Omega)$
+is the graph with vertex set $\Omega$ and arc-set $\Delta$
+Need to say more about the diagonal orbital.
+\end{definition}
+
+Note that if $\Delta$ is taken to be the diagonal orbit,
+then the resulting graph has loops, and so is not actually
+a graph by our definition. Generally we assume that $\Delta$
+is not the diagonal orbit.
+
+\begin{proposition}
+Orbital graphs are symmetric. Every symmetric graph is an orbital graph
+\begin{proof}
+Suppose that $\Gamma = \orb_\Delta(G,\Omega)$ 
+for some transitive permutation group
+$(G,\Omega)$ and some self-paired orbital $\Delta$.
+Since $V \Gamma = \Omega$ and $(G,\Omega)$ is transitive,
+$\Gamma$ is $G$-vertex transitive.
+Since $A \Gamma = \Delta$ and $\Delta$ is an orbital
+$\Gamma$ is $G$-arc transitive.
+It follows that $\Gamma$ is symmetric.
+
+Now suppose that $\Gamma$ is a $G$-symmetric graph.
+Since $\Gamma$ is $G$-vertex transitive
+$(G, V \Gamma)$ is a transitive permutation group.
+Since $A \Gamma \subseteq V \Gamma \times V \Gamma$
+and $\Gamma$ is $G$-arc transitive, $A \Gamma$
+is an orbital of $(G,V \Gamma)$.
+It follows that $\Gamma = \orb_{A \Gamma}(G,V \Gamma)$.
+\end{proof}
+\end{proposition}
+
+Relaxing the condition that $\Delta$ must be self-paired 
+leads to a symmetric digraph.
+
+\section{Imprimitive Symmetric Graphs}
+
+Recall that if $\Delta$ is a subset of $\Omega$ 
+and $g$ is an element of $G$, then $\Delta^g$ denotes
+the image of $\Delta$ under the action of $g$.
+
+\begin{definition}[Block of Imprimitivity]
+If $(G,\Omega)$ is a transitive permutation group
+then a subset $\Delta$ of $\Omega$
+is said to be a \emph{block of imprimitivity} if for every $x \in G$
+either $\Delta^x = \Delta$ or $\Delta^x \cap \Delta = \emptyset$
+\end{definition}
+
+\begin{definition}[$G$-invariant partition]
+If $(G, \Omega)$ is a transitive permutation group,
+then a partition $\cB$ of $\Omega$ is said to be \emph{$G$-invariant}
+if for each $\Delta \in {\cB}$ and each $x \in G$
+we have $\Delta^x \in {\cB}$. 
+That is, $\cB$ admits $G$ as a group of permutations in a natural way.
+\end{definition}
+
+\begin{proposition}
+If $(G,\Omega)$ is a transitive permutation group
+and $\Delta$ is a block of imprimitivity
+then $\cB = \{ \Delta^g : g \in G \}$ is a $G$-invariant
+partition.
+\begin{proof}
+Since $(G,\Omega)$ is transitive,
+every $\alpha \in \Omega$ is contained in $\Delta^g$
+for some $g \in G$. Thus $\bigcup_{g \in G} \Delta^g = \Omega$.
+If $\Delta^{g_1} \cap \Delta^{g_2} \neq \emptyset$
+for some $g_1, g_2 \in G$
+then $\Delta \cap \Delta^{g_2 g_1^{-1}} \neq \emptyset$.
+Since $\Delta$ is a block of imprimitivity,
+this implies that $\Delta = \Delta^{g_2 g_1^{-1}}$
+and so $\Delta^{g_1} = \Delta^{g_2}$.
+Thus $\cB$ is a partition of $\Omega$.
+For any $\Delta^g \in \cB$ and any $x \in G$
+$(\Delta^g)^x = \Delta^{gx} \in \cB$.
+Thus $\cB$ is a $G$-invariant partition of $\Omega$.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+If $(G,\Omega)$ is a transitive permutation group
+and $\cB$ is a $G$-invariant partition of $\Omega$,
+then each $B$ in $\cB$ is a block of imprimitivity.
+\begin{proof}
+Since $\cB$ is $G$-invariant, $B^g \in \cB$ for any
+$g \in G$. Since $\cB$ is a partition, if $B^g \neq B$
+then $B^g \cap B = \emptyset$.
+The result follows.
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+The map $\pi : \Omega \to \cB$ which sends each point of $\Omega$
+to the block of $\cB$ containing it
+induces a surjective permutation homomorphism from $(G, \Omega)$
+to $(G,\cB)$.
+\begin{proof}
+Need to show that $\pi(\alpha^x) = \pi(\alpha)^x$
+for any $\alpha \in \Omega$ and any $x \in G$.
+By the previous proposition $\pi(\alpha)$ is a block of imprimitivity.
+Let $\Delta = \pi(\alpha)$. 
+Since $\alpha \in \Delta$ we must have $\alpha^x \in \Delta^x$
+That is $\pi(\alpha^x) = \Delta^x = \pi(\alpha)^x$.
+\end{proof}
+\end{proposition}
+
+For any $B \in \cB$ we refer to the set $\pi^{-1}(B)$ as the
+{\it fiber} of the homomorphism $\pi$ at $B$.
+The fibers of a permutation homomorphism are blocks of imprimitivity.
+Conversly each block of imprimitivity $\Delta$ 
+gives rise to the $G$-invariant partition:
+$\cB = \{ \Delta^x : x \in G \} $
+and thus also to the homomorphism $(G,\Omega) \mapsto (G,\cB)$.
+
+
+For every permutation group both $\{a\}$ and $\Omega$ are 
+trivially blocks of imprimitivity. A permutation group is \emph{primitive}
+if it admits no nontrivial blocks of imprimitivity.
+%In category theoretic terms, the primitive representations
+%of a group $G$ are those objects of $G$-Set having no proper quotients objects.
+%Thus we see that the notions of transitivity and primitivity
+%are category theoretic duals.
+
+\begin{definition} [Imprimitive Symmetric Graph]
+A symmetric graph $(G,\Gamma)$ is said to be {\it imprimitive} if
+the induced permutation group, $(G, V \Gamma)$, is imprimitive.
+\end{definition}
+
+\begin{definition} [Quotient Graph]
+Suppose that $(G,\Gamma)$ is an imprimitive symmetric graph
+with $\cB$ a nontrivial $G$-invariant partition of the vertex set $V \Gamma$.
+Define the {\it quotient graph} $\Gamma_\cB$ of $(G,\Gamma)$ with respect to $\cB$
+to be the graph with vertex set $\cB$, and an arc $(B,C)$,
+whenever there is some $\alpha \in B$ 
+and some $\beta \in C$ 
+such that  $(\alpha, \beta )$ is an arc of $\Gamma$.
+\end{definition}
+
+\begin{proposition}
+$(G, \Gamma_\cB)$ is a symmetric graph.
+
+\begin{proof}
+We show that $G$ acts transitively on the arcs of $\Gamma_\cB$.
+Let $(B,C)$ and $(D,E)$ be any two arcs of $\Gamma_\cB$.
+By the definition of the quotient graph,
+there must be some $\alpha \in \pi^{-1}(B)$ 
+and $\beta \in \pi^{-1}(C)$
+such that $(\alpha, \beta) \in A \Gamma$.
+Simmilarly, there must be some $\gamma \in \pi^{-1}(D)$ 
+and $\delta \in \pi^{-1}(E)$
+such that $(\gamma, \delta) \in A \Gamma$,
+By the symmetry of $(G, \Gamma)$, we can find an element $g \in G$
+which carries  $(\alpha,\beta)$ to $(\gamma,\delta)$.
+Since $\pi$ is a $G$-homomorphism, it follows that:
+\begin{eqnarray*}
+(B,C)^g & = & (\pi(\alpha),\pi(\beta))^g \\
+        & = & (\pi(\alpha)^g,\pi(\beta)^g) \\
+	& = & (\pi(\alpha^g),\pi(\beta^g)) \\
+        & = & (\pi(\gamma),\pi(\delta)) \\
+	& = & (D,E).
+\end{eqnarray*}
+\end{proof}
+\end{proposition}
+
+Suppose that some arc of $\Gamma$ 
+has both its endpoints in the same fiber of $\cB$,
+that is, there exists some $(\alpha,\beta) \in A \Gamma$
+such that $\pi(\alpha) = \pi(\beta)$.
+Since the fibers are blocks of imprimitivity,
+it follows that $\pi(\alpha^g) = \pi(\beta^g)$ for each $g \in G$,
+The arc transitivity of $\Gamma_\cB$ then implies 
+every arc of $\Gamma$ has both its endpoints in the same fiber. 
+In this case $\Gamma_\cB$ is the empty graph (no edges) 
+with one vertex per connected component of $\Gamma$. 
+This case is not very interesting,
+to exclude it we say that the quotient is {\it nontrivial}
+if it has valency at least one.
+By the above discussion, $\Gamma_\cB$ is nontrivial
+if and only if each of the fibers of $\cB$ is an
+{\it independent set} of $\Gamma$.
+For the remainder of this paper we shall always assume
+that the quotient of a $G$-symmetric graph homomorphism
+is non-trivial, even if we neglect to state this explicitely.
+
+%Butterflies in bloom. See how the grow from a small seed into such majestic beings?
+

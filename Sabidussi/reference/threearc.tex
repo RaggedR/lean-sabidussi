@@ -1,0 +1,725 @@
+\chapter{Some Constructions}
+
+% Try to weave references to the literature into the narrative
+The problem of relating the structure of $\Gamma$ 
+to that of the triple $(\Gamma_\cB, \Gamma[B,C], \cD(B))$
+is very difficult when $\Gamma$ is taken to be 
+an arbitrary imprimitive symmetric graph.
+The approach which has been taken by researchers in the area
+is to first impose additional assumptions 
+on one or more of the components of the decomposition,
+then study the subfamily of imprimitive symmetric graphs 
+admitting a decompositions which satisfies these additional assumptions.
+
+The special case where the parameters of the ``kernel design'' $\cD(B)$
+satisfy: $$v = k-1 \geq 2.$$
+was studied by Li, Praeger and Zhou \cite{ZCP2000}.
+It was found that for this special case, 
+if the design $\cD(B)$ contains no repeated blocks,
+then there exists an elegant combinatorial method
+for constructing $\Gamma$ from $\Gamma_\cB$.
+This is the {\it three-arc graph construction} which will
+be described in the next section.
+
+In a later paper Zhou \cite{ZDM2002} showed that 
+the three-arc graph construction actually applies 
+to a wider family of triples $(G, \Gamma, \cB)$
+than those originally studied.
+In particular the construction may be used for any triple $(G, \Gamma, \cB)$
+satisfying the following condition:  
+
+\begin{condition}
+The induced actions of $G_B$ on $B$ and $\Gamma_\cB(B)$
+are permutationally equivalent with respect to some bijection
+$\rho : B \to \Gamma_\cB(B)$.
+\end{condition}
+
+On a group theoretic level this is quite a natural condition to impose.
+Suppose that the triple $(G,\Gamma, \cB)$ satisfies the above condition
+and that $\Gamma \cong \Sab(G,K,a)$ 
+and $\Gamma_\cB \cong \Sab(G,H,a)$.
+If $B$ is a block of $\cB$ then
+by proposition [?] the action of $G_B$ on $B$
+is permutation equivalent to $(H, \cos(K))$.
+The action of $G_B$ on $\Gamma_\cB(B)$ 
+is just the ``local action'' of $\Gamma_\cB$
+and so the permutation group $(G_B, \Gamma_\cB(B))$
+is permutation equivalent to $(H, \cos(a^{-1}Ha \cap H))$.
+
+If the condition above holds, 
+then we must have $K \cong a^{-1}Ha \cap H$.
+This means that the stabilizer of a point of $\Gamma$ is isomorphic
+to the stabilizer of an arc of $\Gamma_\cB$.
+This strong ``coupling'' between the points of $\Gamma$
+and the arcs $\Gamma_\cB$ allows us to construct
+$\Gamma$ from $\Gamma_\cB$ in a straightforeward manner.
+
+%The condition above is also very natural on a design theoretic level.
+%Recall that if $\Gamma \cong \Sab(G,K,a)$ and $\Gamma_\cB \cong \Sab(G,H,a)$
+%then the ``kernel design'' of the homomorphism $\Gamma \mapsto \Gamma_\cB$
+%has point stabilizer $a^{-1}Ha \cap H$ and block stabilizer $\cK$.
+%If $\cK \cong a^{-1}Ha \cap H$ then the action of $H$ on the points
+%of $\cK$ is permutation equivalent to the action of $H$ on the blocks
+%of $\cK$.
+
+\section{Three-Arc Graphs}
+The three-arc graph construction was first introduced 
+by Li, Praeger and Zhou in \cite{ZCP2000}.
+Let $\Sigma$ be any $G$-symmetric graph.
+Recall that an {\it $s$-arc} of $\Sigma$ is a sequence 
+$(\alpha_0, \alpha_1, \dots, \alpha_s)$ of vertices in $\Sigma$ such that 
+$\alpha_i,\alpha_{i+1}$ are adjacent in $\Sigma$ and $\alpha_{i-1} \neq \alpha_{i+1}$
+for each $i$. The set of $s$-arcs of $\Sigma$ is denoted by $\Arc_s(\Sigma)$.
+Consider the induced action of $G$ on $\Arc_3(\Sigma)$ given by:
+$$(\sigma_0,\sigma_1,\sigma_2,\sigma_3)^g = (\sigma_0^g,\sigma_1^g,\sigma_2^g,\sigma_4^g).$$
+This action is, in general, intransitive. We may however partition the set $\Arc_3(\Sigma)$
+into {\it orbits} on which $G$ acts transitively. For such an orbit $\Delta$, let 
+$\Delta^{\circ} = \{ (\sigma_4, \sigma_3, \sigma_2, \sigma_1) : 
+                 (\sigma_1, \sigma_2, \sigma_3, \sigma_4) \in \Delta \}$ 
+denote the {\it pair} of $\Delta$. It is not hard to check that
+$\Delta^{\circ}$ is again an orbit of $G$ on $\Arc_3(\Sigma)$.
+If $\Delta = \Delta^{\circ}$ then $\Delta$ is said to be {\it self paired}.
+
+\begin{definition}
+\label{threearc}
+Given a $G$-symmetric graph $\Sigma$ and a self-paired orbit $\Delta$ on 
+$\Arc_3(\Sigma)$, the {\it three-arc graph}
+$\Gamma = \Arc_{\Delta}(\Sigma)$ is the graph with vertex set $A \Sigma$
+and arc set $\{ ((\sigma,\tau), (\sigma',\tau') : (\tau,\sigma,\sigma',\tau') \in \Delta \}$.
+\end{definition}
+
+Note that the requirement that $\Delta$ is self-paired 
+ensures that the resulting graph is simple.
+
+\begin{proposition}
+With $G$, $\Sigma$ and $\Delta$ as in definition \ref{threearc},
+the three-arc graph $\Gamma = \Arc_{\Delta}(\Sigma)$
+is $G$-symmetric.
+\begin{proof} Immediate from the construction.
+\end{proof} 
+\end{proposition}
+
+For each vertex $\sigma$ of $\Sigma$, let 
+$B(\sigma) = \{ (\sigma, \tau) : \tau \mbox{ is a neighbour of } \sigma \}$
+be the set of arcs of $\Sigma$ with initial vertex $\sigma$.
+Clearly $\cB = \{ B(\sigma) : \sigma \mbox{ is a vertex of } \Sigma \}$ 
+is a partition of $A \Sigma$.  
+For any $g \in G$ we have 
+\begin{eqnarray*}
+B(\sigma)^g & = & \{ (\sigma, \tau)^g : \tau \mbox{ is a neighbour of } \sigma \} \\
+              & = & \{ (\sigma^g, \tau^g) : \tau \mbox{ is a neighbour of } \sigma \} \\
+	      & = & \{ (\sigma^g, \tau) : \tau \mbox{ is a neighbour of } \sigma^g \} \\
+	      & = & B(\sigma^g).
+\end{eqnarray*}
+Thus $\cB = \{ B(\sigma) : \sigma \in V \Sigma \}$ 
+is in fact a $G$-invariant partition of $V \Gamma$. 
+
+\begin{proposition}
+\label{three-arc quotient}
+With $\Gamma = \Arc_{\Delta}(\Sigma)$ and $\cB$ as defined above,
+The quotient graph $\Gamma_\cB$ is isomorphic to $\Sigma$.
+
+\begin{proof}
+The map $\sigma \mapsto B(\sigma)$ identifies the vertices 
+of $\Sigma$ with the vertices of $\Gamma_\cB$.
+We must show that 
+$(\sigma, \sigma')$ is an arc of $\Sigma$ if and only if
+$(B(\sigma), B(\sigma'))$ is an arc of $\Gamma_\cB$.
+
+If $(B(\sigma), B(\sigma'))$ is an arc of $\Gamma_\cB$
+then then for some $\tau, \tau' \in V \Sigma$ 
+the arcs $(\sigma, \tau)$ and $(\sigma',\tau')$ are adjacent in $\Gamma$.
+It follows that 
+$(\tau, \sigma, \sigma',\tau')$ is a three-arc of $\Sigma$
+and so $\sigma$ is adjacent to $\sigma'$ in $\Sigma$. 
+
+For the other direction, 
+let $(\alpha, \beta, \gamma, \delta)$ be any three-arc 
+of $\Sigma$ contained in in $\Delta$.
+If $(\sigma, \sigma')$ is any arc of $\Sigma$, 
+then by the $G$-arc-transitivity of $\Sigma$
+there exists a $g \in G$ such that $(\beta,\gamma)^g = (\sigma,\sigma')$.
+Since $\Delta$ is an orbit of $G$ on the three-arcs of $\Sigma$, 
+it follows that 
+$(\alpha,\beta,\gamma,\delta)^g = (\alpha^g, \sigma, \sigma', \delta^g)$ 
+is contained in $\Delta$.
+Thus the arc $(\sigma, \alpha^g)$ is adjacent to 
+the arc $(\sigma', \delta^g)$ in $\Gamma$
+and so $B(\sigma)$ is adjacent to $B(\sigma')$ in $\Gamma_\cB$.
+
+
+\end{proof}
+\end{proposition}
+
+%The three-arc graph construction allows us to take a $G$-symmetric graph
+%$\Sigma$ and construct a {\it larger} imprimitive $G$-symmetric graph $\Gamma$
+%which admits the original graph $\Sigma$ as a quotient.
+%Provided of course that we can find a suitable self-paired orbit
+%on the three arcs of $\Sigma$.
+%This is an interesting result because blah blah blah....
+
+%We shall now show that the family of triples $(G, \Gamma, \cB)$
+%for which $\Gamma$ is a three-arc graph of $\Gamma_\cB$ 
+%is precisely the family of triples satisfying 
+%the condition {\bf (PE)} stated earlier.
+
+
+
+\begin{proposition}
+
+If $(G,\Gamma, \cB)$ is such that $\Gamma$ is a three-arc graph
+of $\Gamma_\cB$, then for any $B \in \cB$
+the permutation groups $(G, B)$ and $(G, \Gamma_\cB(B))$
+are permutation equivalent.  
+
+\begin{proof}
+Each $B \in \cB$ is of the form $B(\sigma)$ for some
+$\sigma$ a vertex of $\Gamma_\cB$.
+The vertices of $\Gamma$ contained in $B(\sigma)$ 
+are precisely the arcs of $\Gamma_\cB$
+of the form $(\sigma, \tau)$.
+
+Let $\rho : B(\sigma) \to \Gamma_\cB(B(\sigma))$ be given by 
+$(\sigma,\tau) \mapsto B(\tau)$.
+Clearly $\eta$ is a bijection.
+If $g$ is any element of the stabilizer of $B(\sigma)$ 
+then we have:
+\begin{eqnarray*}
+\rho((\sigma,\tau)^g) & = & \rho((\sigma^g,\tau^g)) \\
+                      & = & \rho((\sigma,\tau^g))   \\
+		      & = & B(\tau^g)               \\
+		      & = & B(\tau)^g.
+\end{eqnarray*}
+Thus $\rho$ induces a permutation equivalence between the permutation groups
+$(G_{B(\sigma)}, B(\sigma))$ and $(G_{B(\sigma)}, \Gamma_\cB(B(\sigma))$.
+
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+If $(G, \Gamma, \cB)$ is such that 
+$(G, B)$ is permutation equivalent to $(G, \Gamma_\cB(B))$
+for some $B \in \cB$, then the action of $G$
+on the vertices of $\Gamma$ is permutation equivalent
+to the action of $G$ on the arcs of $\Gamma_\cB$.
+
+\begin{proof}
+Let $\rho : B \to \Gamma_\cB(B)$ be any bijection
+inducing a permutation equivalence between 
+$(G,B)$ and $(G, \Gamma_\cB(B))$
+and let $\pi : V \Gamma \to \cB$ be the map which sends
+each vertex of $\Gamma$ to the block of $\cB$ containing it.
+Fix a vertex $\alpha$ of $\Gamma$.
+Since $\Gamma$ is $G$-vertex transitive, every vertex of $\Gamma$
+may be written in the form $\alpha^g$ for some $g \in G$.
+Let $\mu : V \Gamma \to A \Gamma_{\cB}$ be given by
+$ \alpha^g \mapsto (\pi(\alpha)^g, \rho(\alpha)^g) $.
+It is not too hard to see that $\mu$ is a bijection.
+For any $\beta = \alpha^g$ and any $x \in G$ 
+we have:
+\begin{eqnarray*}
+\mu(\beta^x) & = & \mu(\alpha^{gx})                       \\
+             & = & (\pi(\alpha)^{gx}, \eta(\alpha)^{gx})    \\
+	     & = & (\pi(\alpha^g)^x, \eta(\alpha^g)^x)      \\
+	     & = & (\pi(\beta)^x, \eta(\beta)^x)            \\
+	     & = & (\pi(\beta), \eta(\beta))^x              \\
+	     & = & \mu(\beta)^x
+\end{eqnarray*}
+Thus $\mu$ establizhes a permutation isomorphism between
+$(G,V \Gamma)$ and $(G, A \Gamma_\cB)$.
+
+\end{proof}
+\end{proposition}
+
+We may make use the map $\mu$ to ``label'' the vertices
+of $\Gamma$ by the arcs of $\Gamma_\cB$.
+For any arc $(B,C)$ of $\Gamma_{\cB}$, 
+let $v_{BC} = \mu^{-1}((B,C))$ denote
+the vertex of $\Gamma$ which is mapped to $(B,C)$ by $\mu$.
+
+\begin{proposition}
+\label{labelling}
+Some stuff about how $G$ acts on labelled vertices
+and how the initial block contains the vertex.
+\end{proposition}
+
+\begin{proposition}
+\label{PE implies 3-arc}
+Provided that $\Gamma$ as valency at least two,
+for each arc $(v_{BC}, v_{DE})$ of $\Gamma$,
+$(C,B,D,E)$ is a 3-arc of $\Gamma_\cB$.
+
+\begin{proof}
+Suppose that $v_{BC}$ were adjacent to $v_{CB}$.
+Since $\val(\Gamma) \geq 2$, the vertex $v_{CB}$
+is adjacent to some other vertex $v_{B_1C_1}$ 
+distinct from $v_{BC}$
+By the $G$-symmetry of $\Gamma$ there exists a $g \in G$
+such that $(v_{BC},v_{CB})^g = (v_{B_1C_1},v_{CB})$.
+By the previous proposition, this implies that 
+$B = B^x = B_1$ and $C = C^x = C_1$, so $v_{BC} = v_{B_1C_1}$.
+A contradiction. Thus $v_{BC}$ is not adjacent to $v_{CB}$.
+
+Suppose now that $v_{BC}$ were adjacent to $v_{CE}$
+for some $E \neq B$.
+Since $\val(\Gamma) \geq 2$ we can find another vertex $v_{C_1E_1}$
+distinct from $v_{CE}$ and adjacent to $v_{BC}$.
+By the $G$-symmetry of $\Gamma$ we can find some $g_1 \in G$
+such that $(v_{BC},v_{CE})^{g_1} = (v_{BC},v_{C_1E_1})$.
+By the previous proposition, this implies that $C = C^{g_1} = C_1$.
+We can also find a $g_2 \in G$
+such that $(v_{BC},v_{CE})^{g_2} = (v_{C_1E_1}, v_{BC})$
+and so 
+$B = C^{g_2} = E_1$. Combining these gives $v_{C_1E_1} = v_{CB}$, 
+but $v_{BC}$ is not adjacent to $v_{CB}$
+so again we have a contradiction.
+
+We know now that if $(v_{BC}, v_{DE})$ is an arc of $\Gamma$,
+then $D \neq C$. A simmilar argument shows that $B \neq E$,
+so $B,C,D,E$ are distinct vertices with $B$ adjacent to $C$
+and $D$ adjacent to $E$. Since, by the previous proposition
+$B(v_{BC}) = B$ and $B(v_{DE} = D$, we have $B$ adjacent to $D$
+and so $C,B,D,E$ is a 3-arc of $\Gamma_\cB$ as claimed.
+
+\end{proof}
+\end{proposition}
+
+Concluding remarks.
+
+%It follows immediately from proposition \ref{PE implies 3-arc}
+%that if $(\Gamma, \cF)$ is any pair satisfying {\bf PE assumption}
+%then $\Gamma$ is isomorphic to a 3-arc graph of $\Gamma_\cF$
+%taking $\Delta$ to be the orbit containing $(C,B,D,E)$
+%for any arc $(v_{BC}, v_{DE})$ of $\Gamma$.
+%(This needs to be much better written).
+%Need to talk about conditions under which a $G$-symmetric graph
+%admits a self-paired $G$-orbit on its three-arcs.
+
+%\section{$(G,2)$-arc transitive quotients}
+
+%\section{$(G,3)$-arc transitive quotients}
+
+%\section{Almost Covers}
+
+%\section{The case when the ``kernel design'' is symmetric}
+
+%\section{Uniqueness of the Construction}
+
+%\begin{enumerate}
+%\item how to find the self-paired orbit?
+%\item not unique
+%\item extremal case: induced bipartite graph almost a matching
+%\item occurs only if quotient is $(G,3)$-arc transitive
+%\item which paper does this occur in?
+%\end{enumerate}
+
+%We have seen that any pair $(\Gamma, \cB)$ satisfying the
+%{\it (PE) assumption}, $\Gamma$ may be reconstructed
+%from $\Gamma_\cB$ by using the three-arc graph construction
+%{\it for some suitable self-paired orbit}. 
+%The question is, which orbit? and is there a unique such orbit?
+
+%An obvious case in which there will be a unique orbit
+%on the three arcs is when the quotient is in fact
+%$(G,3)$-arc transitive. In this case, $G$ is in fact
+%transitive on $\Arc_3(\Gamma_\cB)$ and the set
+%of all $3$-arcs forms a self-paired orbit. 
+\section{Locally imprimitive quotient}
+
+Suppose that $\Gamma = \sab(G,H,a)$.
+Let $\overline{H} = a^{-1}Ha \cap H$,
+so the local permutation group induced at each vertex of $\Gamma$
+is equivalent to $(H, \cos(\overline{H}))$.
+Suppose further that there is some $K$ such that $\overline{H} < K < H$
+and $a \not\in K$. Then the graph $\widetilde{\Gamma} = \sab(G,K,a)$
+is an extension of $\Gamma$.
+Let $\overline{K} = a^{-1}Ka \cap K$.
+Since $K < H$ we must also have $a^{-1}Ka < a^{-1}Ha$
+so $\overline{K} \leq \overline{H}$.
+Since $\overline{H} < K$ we must also have
+$a^{-1}\overline{H}a < a^{-1}Ka$
+but since $a$ is an involution $a^{-1}\overline{H}a = \overline{H}$
+so we have $\overline{H} \leq \overline{K}$.
+That is $\overline{H} = \overline{K}$
+and the local permutation group induced at each vertex of
+$\widetilde{\Gamma}$ is $(K, \cos(\overline{H}))$.
+
+
+The pair $(\Gamma,\widetilde{\Gamma})$ satisfy the property that
+{\it globally} $\widetilde{\Gamma}$ is imprimitive,
+admitting $\Gamma$ as quotient, but {\it locally}
+$\Gamma$ is imprimitive, and the local permutation group of
+$\widetilde{\Gamma}$ is a quotient of the local permutation
+group of $\Gamma$. We wish to understand how $\Gamma$
+and $\widetilde{\Gamma}$ are related {\it structurally},
+and ideally find some method of constructing $\widetilde{\Gamma}$
+from $\Gamma$.
+
+As a preliminary observation, let $n = [G:H]$ be the number of vertices of $\Gamma$,
+let $v = [K:\overline{H}]$ be the valency of $\widetilde{\Gamma}$
+and let $r = [H:K]$.
+The graph $\widetilde{\Gamma}$ has $[G:K] = [G:H][H:K] = nr$
+vertices. That is, $r$ times as many vertices as $\Gamma$.
+The valency of $\Gamma$ is $[H:\overline{H}] = [H:K][K:\overline{H}] = rv$.
+That is $r$ times the valency of $\widetilde{\Gamma}$.
+Since the number of edges in a graph is equal to half the
+valency times the number of vertices, it follows that
+both $\Gamma$ and $\widetilde{\Gamma}$ have the same number of edges.
+\hfill \break
+
+
+The action of $G$ on the arcs of $\Gamma$ is permutation equivalent
+to $(G, \cos(\overline{H}))$.
+Since $\Gamma$ is simple, each arc $(\alpha,\beta)$ has a {\it pair}
+namely $(\beta,\alpha)$.
+The function $\varphi : A \Gamma \to A \Gamma$
+which sends each arc to its pair is an involution
+It also preserves the action of $G$.
+
+Now, since $\overline{H} < H < G$ the action of $G$
+on the arcs of $\Gamma$ is imprimitive.
+That is, there is some $G$-invariant partition $\cB$
+of $A \Gamma$ such that the action of $G$ on $\cB$
+is permutation equivalent to $(G, \cos(H))$.
+In fact, this is the partition $\cB = \{ B(\alpha) : \alpha \in V \Gamma \}$
+where $B(\alpha)$ is the set of all arcs who's initial vertex is $\alpha$.
+
+Let $\pi : A \Gamma \to \cB$ be the map which sends
+each arc to the block of $\cB$ containing it.
+We may define a new graph $\Sigma$ we vertex set
+$\cB$ where $p$ is adjacent to $b$ if and only if
+there is some $x \in \pi^{-1}(p)$ and some $y \in \pi^{-1}(b)$
+such that $y = \varphi(x)$.
+This new graph $\Sigma$ is in fact isomorphic to $\Gamma$.
+
+
+The action of $G$ on the arcs of $\Gamma$ is permutation
+isomorphic to the action of $G$ on the arcs of $\widetilde{\Gamma}$.
+Both actions are of the form $(G, \cos(\overline{H}))$
+Since $\overline{H} < K < G$ there exists some $G$-invariant partition
+$\mathfrak{B}$ of $A \Gamma$ such that the action of $G$ on $\mathfrak{B}$
+is permutation equivalent to $(G, \cos(H))$.
+The partition $\mathfrak{B}$ is a refinement of the partition $\cB$.
+
+Let $\lambda : A \Gamma \to \mathfrak{B}$ be the map hich sends
+each arc to the block of $\mathfrak{B}$ containing it.
+We may define a new graph $\widetilde{\Sigma}$ we vertex set
+$\mathfrak{B}$ where $p$ is adjacent to $b$ if and only if
+there is some $x \in \lambda^{-1}(p)$ and some $y \in \lambda^{-1}(b)$
+such that $y = \varphi(x)$.
+This new graph $\Sigma$ is in fact isomorphic to $\widetilde{\Gamma}$.
+Thus we have a method of construction $\widetilde{\Gamma}$ from $\Gamma$.
+
+\section{Covering Graphs}
+
+% Introductory paragraph:
+The three-arc graph construction allows us, under certain conditions,
+to ``unfold'' a $G$-symmetric graph into a larger, {\it imprimitive}
+$G$-symmetric graph, admitting the original graph as a quotient.
+The {\it covering graph} construction \cite{B1974} is simmilar
+in this respect. It also, under certain conditions,
+allows us to ``unfold'' a $G$-symmetric graph into a larger one.
+It differs from the three-arc graph construction, however,
+in that it requires a simultaneous ``unfolding''
+of the group $G$.
+
+
+% Semidirect Product:
+Recall that given two groups $N$ and $G$ and a homomorphism
+$$\rho : G \to \Aut(N)$$
+we may form the {\it semidirect product} of $N$ by $G$.
+This is the group $\widetilde{G} = N \rtimes_\rho G$,
+whose elements are the ordered pairs:
+$$\{ (n,g) : n \in N, g \in G \}$$
+with multiplication given by:
+$$(n_1, g_1)(n_2,g_2) = (n_1^{\rho(g_1)}n_2, g_1g_2).$$
+The functions $i_1 : N \to \widetilde{G}$ and $i_2 : G \to \widetilde{G}$
+given by $ n \mapsto (n,1) $ and $ g \mapsto (1,g) $ respectively give
+natural embeddings of $N$ and $G$ into $\widetilde{G}$.
+Identifying $N$ with its image under $i_1$,
+the semidirect product has the property that $N$ is normal in $\widetilde{G}$
+and $\widetilde{G}/N \cong G$.
+
+% Definitions:
+\begin{definition} [$N$-chain]
+Suppose that $\Gamma$ is a $G$-symmetric graph and $N$ is a group.
+An $N$-chain is a function $\phi : A \Gamma \to N$
+satisfying $\phi((v,u)) = \phi((u,v))^{-1}$ for all $(u,v) \in A \Gamma$.
+\end{definition}
+
+\begin{definition} [Compatible $N$-chain]
+Suppose that $\Gamma$ is a $G$-symmetric graph, $N$ is a group
+and $\rho : G \to \Aut(N)$ is a homomorphism.
+An $N$-chain $\phi$ is said to be {\it compatible} with $\rho$
+if for every $g \in G$ the following diagram commutes:
+
+\centerline{
+\xymatrix{
+\ar[d]_{g} \ar[r]^\phi A \Sigma & K \ar[d]^{\rho(g)} \\
+\ar[r]_{\phi} A \Sigma & K
+}}
+\end{definition}
+
+\begin{definition}[Biggs Cover]
+Suppose that $\Gamma$ is a $G$-symmetric graph, $N$ is a group,
+$\rho : G \to \Aut(N)$ is a homomorphism and $\phi$ is a compatible $N$-chain.
+The Biggs Cover $\widetilde{\Gamma}(N,\rho,\phi)$
+of $\Gamma$ with respect to $\phi$ is the graph
+with vertex set:
+$\{ (g,v) : k \in G, v \in V \Gamma \}$
+and arc set:
+$ \{ ((g_1,v_1),(g_2,v_2)) : (v_1,v_2) \in A \Gamma, g_2 = g_1 \phi((v_1,v_2)) \}$
+\end{definition}
+
+Note that the condition $\phi((v,u)) = \phi((u,v))^{-1}$ ensures that the resulting
+graph is simple.
+
+% Proposition:
+\begin{proposition}
+The covering graph $\widetilde{\Gamma}(N,\rho,\phi)$ is $(N \rtimes_\rho G)$-symmetric.
+\begin{proof}
+
+Define an action of $N \rtimes_\rho G$ on $\widetilde{\Gamma}$ by:
+$$(n,v)^{(\eta, g)} = (n^{\rho(g)} \eta,v^g).$$
+This action is well-defined since:
+\begin{eqnarray*}
+(n,v)^{(\eta_1, g_1)(\eta_2, g_2)}
+& = & (n^{\rho(g_1)} \eta_1 ,v^{g_1})^{(\eta_2, g_2)} \\
+& = & (n^{\rho(g_1) \rho(g_2)} \eta_1^{\rho(g_2)} \eta_2 , v^{g_1 g_2}) \\
+& = & (n,v)^{(\eta_1^{\rho(g_2)} \eta_2, g_1 g_2)}
+\end{eqnarray*}
+We must check that it preserves the adjacency structure of $\widetilde{\Gamma}$.
+Observe that, by the compatibility of $\rho$ and $\phi$,
+if $n_2 = n_1 \phi(v_1,v_2)$ then:
+\begin{eqnarray*}
+{n_2}^{\rho(g)} \phi({v_1}^g, {v_2}^g)
+& = & {n_2}^{\rho(g)} \phi(v_1, v_2)^{\phi(g)} \\
+& = & (n_2 \phi(v_1, v_2))^{\phi(g)} \\
+& = & {n_1}^{\phi(g)}
+\end{eqnarray*}
+for any $(\eta,g) \in N \rtimes_\rho G$.
+Also, since $G$ is a group of automorphisms of $\Gamma$, we know that
+$(v_1,v_2) \in A \Gamma$ if and only if $({v_1}^g,{v_2}^g) \in A \Gamma$.
+Thus the action defined above does indeed preserves adjacency.
+
+\hfill \break
+For any $(n_1,v_1), (n_2,v_2) \in V \widetilde{\Gamma}$,
+by the $G$-symmetry of $\Gamma$ we can find a $g \in G$
+such that ${v_1}^g = {v_2}$.
+Let $\eta = {n_1}^{\rho(g)^{-1}} n_2$.
+We have:
+\begin{eqnarray*}
+(n_1,v_1)^{(\eta,g)} & = & ({n_1}^{\rho(g)} \eta,{v_1}^g) \\
+                    & = & ( {n_1}^{\rho(g)}, {n_1}^{\rho(g)^{-1}} n_2,v_2) \\
+		    & = & (n_2,v_2).
+\end{eqnarray*}
+Thus the action is vertex transitive.
+
+\hfill \break
+Suppose that $(n_1,v_1)$ and $(n_2,v_2)$ are both adjacent to $(n,g)$,
+so $n_1 = n \phi(v,v_1)$ and $n_2 = n \phi(v,v_2)$.
+By the $G$-symmetry of $\Gamma$ we can find a $g \in G_v$ such that
+$v_1^g = v_2$.
+Let $\eta = (n^{-1})^{\rho(g)}n$. We have:
+\begin{eqnarray*}
+(n,v)^{(\eta,g)} & = & (n^{\rho(g)} \eta, v^g) \\
+                 & = & (n^{\rho(g)} (n^{-1})^{\rho(g)}n, v) \\
+		 & = & (n,v)
+\end{eqnarray*}
+and:
+\begin{eqnarray*}
+(n_1,v_1)^{(\eta,g)} & = & ({n_1}^{\rho(g)} \eta, {v_1}^g) \\
+                 & = & ({n_1}^{\rho(g)} (n^{-1})^{\rho(g)}n, v_2) \\
+                  & = & ({(n_1 n^{-1})}^{\rho(g)} n, v_2) \\
+                   & = & (\phi(v,v_1)^{\rho(g)} n, v_2) \\
+                    & = & (\phi(v,v_2) n, v_2) \\
+                     & = & (n_2 n^{-1} n, v_2) \\
+                      & = & (n_2, v_2) \\
+\end{eqnarray*}
+Thus the action is locally transitive. The result follows.	      
+\end{proof}							
+\end{proposition}
+												 In fact, a stronger result than this holds.
+												 If $\Gamma$ is $(G,s)$-arc transitive
+												 then $\widetilde{\Gamma}$ is $(\widetilde{G},s)$-arc transitive,
+												 where $\widetilde{G} = N \rtimes_\rho G$.
+												 The proof is by induction and may be found in \cite{B1974}.
+												 This construction was originally used by Conway
+												 to produce an infinitely family of $5$-arc transitive graphs.
+
+												 \hfill \break
+												 For each $v \in V \Gamma$, let $B(v) = \{ (n,v) : n \in N \}$.
+												 For any $(\eta, g) \in \widetilde{G}$ we have:
+												 \begin{eqnarray*}
+												 B(v)^{(\eta,g)} & = & \{ (n,v)^{(\eta,g)} : n \in N \} \\
+												                 & = & \{ (\eta n^{\rho(g)},v^g) : n \in N \} \\
+														                 & = & \{ (n, v^g) : n \in N \} \\
+																                 & = & B(v^g).
+																		 \end{eqnarray*}
+																		 Thus the partition:
+																		 $\cB = \{ B(v) : v \in V \Gamma \}$
+																		 is $\widetilde{G}$-invariant.
+
+\begin{proposition}
+The quotient of the Biggs cover $\widetilde{\Gamma}$
+with respect to the partition $\cB$
+is isomorphic to the original graph $\Gamma$
+\begin{proof}
+The map $\eta : V \Gamma \to V \widetilde{\Gamma}_\cB$ given by
+$v \mapsto B(v)$ establishes a bijection between the vertices of $\Gamma$
+and the vertices of $\widetilde{\Gamma}_\cB$.
+If $(u,v)$ is an arc of $\Gamma$, then $((1,u),(\phi((u,v)),v))$
+is an arc of $\widetilde{\Gamma}$, and so $(B(u), B(v))$
+is an arc of $\widetilde{\Gamma}_\cB$.
+If $(u,v)$ is not an arc of $\Gamma$, then for all $n_1, n_2 \in N$
+$((n_1, u),(n_2, v))$ is not an arc of $\widetilde{\Gamma}$
+and so $(B(u), B(v))$ is not an arc of $\widetilde{\Gamma}_\cB$.
+Thus $\eta$ establishes an isomorphism between
+$\Gamma$ and $\widetilde{\Gamma}_\cB$.
+
+\end{proof}
+\end{proposition}
+Let $(B,C)$ be any arc of $\widetilde{\Gamma}$.
+By the above $B = B(u)$ and $C = B(v)$ for some $(u,v) \in A \Gamma$.
+Its not too hard to see that each $(n,u) \in B$
+has a unique neighbour in $C$, namely $(n \phi(u,v),v)$.
+Thus the induced bipartite graph $\Gamma[B,C]$ is a matching.
+It follows immediately that the valency of $\widetilde{\Gamma}$
+is the same as the valency of $\Gamma$.
+
+\section{Group Theoretic analysis of covering graph construction}
+
+%The group $\widetilde{G}$ acts unfaithfully on $\cB$ with kernel
+%$$\widetilde{N} = \{ (n,1) : n \in N \} \cong N.$$
+%If $|N| = n$ then $|\widetilde{G}| = n |G|$,
+%and since $\widetilde{\Gamma}$ has exactly $n$ times as many vertices as $\Gamma$,
+%we have $[\widetilde{G} : \widetilde{G}_{B(\alpha)}] = n [G : G_\alpha]$.
+%It follows that
+%$ |\widetilde{G}_{B(\alpha)}| = |G_\alpha|$.
+
+%Let $\pi : \widetilde{G} \to G$ be the natural projection.
+%Clearly $|\pi(\widetilde{G}_{B(\alpha)})| \leq |\widetilde{G}_{B(\alpha)}|$.
+%Since $G_\alpha \leq \pi(\widetilde{G}_{B(\alpha)})$,
+%we must have $G_\alpha = \pi(\widetilde{G}_{B(\alpha)})$
+%and $|\pi(\widetilde{G}_{B(\alpha)})| = |\widetilde{G}_{B(\alpha)}|$,
+%so $\widetilde{G}_{B(\alpha)} \cong \pi(\widetilde{G}_{B(\alpha)}) \cong G_\alpha$.
+%In fact, the permutation groups
+%$(G_\alpha, \Gamma(\alpha))$ and
+%$(\widetilde{G}_{B(\alpha)}, \widetilde{\Gamma}(B(\alpha)))$
+%are equivalent via the bijection
+%$\eta : \Gamma(\alpha) \to \widetilde{\Gamma}(B(\alpha))$
+%which sends $\beta$ to $B(\beta)$.
+%Probably a much easier way to say this.
+
+%If $\Gamma$ is isomorphic to the coset graph $\Gamma(G, H, a)$
+%then since the local actions of $\Gamma$ and $\widetilde{\Gamma}$
+%are the same, $\widetilde{\Gamma}$ must be isomorphic to the coset graph
+%$\Gamma(\widetilde{G}, H, \widetilde{a})$ where $\widetilde{a}$
+%is such that $\pi(\widetilde{a}) = a$. That is
+%$\widetilde{a} \in \{ (n,a) : n \in N \}$.
+%Thus for any $N$ there are exactly $n$ possible Biggs covers of $\Gamma$.
+
+%Looking closely at the compatibility condition between
+%$\rho$ and $\phi$ we see that, since $G$ acts transitively
+%on the arcs of $\Gamma$, the map $\phi$ is completely
+%determined by where it sends the arc $(v_{H}, v_{Ha})$.
+%Choosing where to send this arcs is essentially equivalent to
+%choosing which preimage of $a$ we want.
+%Requiring that $\phi((v_{H}, v_{Ha})) = n$ is essentially
+%the same as determining that $\widetilde{a} = (n,a)$.
+
+The Bigg's covering graph construction encompasses
+all pairs of graphs $\Gamma(G, H, a)$ and $\Gamma(\widetilde{G}, H, \widetilde{a})$
+where $\widetilde{G}$ is a semidirect product of $N$ by $G$ for some $N$.
+The local permutation groups of $\Gamma$ and $\widetilde{\Gamma}$
+are the same, and $N$ acts regularly on the fibers.
+
+%In the more general case where $\widetilde{G}$ is an extention of $N$ by $G$
+%but not a split extension $\Gamma(\widetilde{G}, H, \widetilde{a})$
+%should be a cover of $\Gamma(G, H, a)$ in the sense that the induced
+%bipartite graph is a matching, but Bigg's covering graph construction
+%cannot be used to construct  $\Gamma(\widetilde{G}, H, \widetilde{a})$
+%from $\Gamma(G, H, a)$.
+
+%It should also possible to have a graph $\widetilde{\Gamma}$
+%covering $\Gamma$ such that the local actions are the same degree
+%but not permutation equivalent.
+
+\section{Subgraph Extension}
+
+I have been thinking about the idea of a ``combinatorial''
+description of the extension of a graph in terms of its quotient.
+That is, a description of the adjacency structure of $\widetilde{\Gamma}$
+directly in terms of the adjaceny structure of $\Gamma$.
+This section is a sketch of an idea I had, that perhaps
+there is a connection between the subgraph structures
+of different $G$-symmetric graphs for the same $G$.
+
+\begin{definition} [Subgraph]
+Suppose that $\Gamma = (V,A)$ is a graph.
+If $W$ is a subset of $V$
+and $B$ is a subset of $(W \times W) \cap A$
+then $\Upsilon = (W,B)$ is a {\it subgraph} of $\Gamma$.
+We write $\Upsilon < \Gamma$ and allow for the possibility
+that $\Upsilon$ is a directed graph.
+\end{definition}
+
+
+\begin{definition} [Stabilizer of a Subgraph]
+Suppose that $(G, \Gamma)$ is a symmetric graph and
+$\Upsilon$ is a directed subgraph. The {\it stabilizer}
+of $\Upsilon$ in $(G, \Gamma)$ is $\Aut(\Upsilon) \cap G$.
+It is denoted by $G_{\Upsilon}$.
+\end{definition}
+
+
+\begin{definition} [Subgraph Graph]
+Suppose that $(G, \Gamma)$ is a symmetric graph,
+$\Upsilon$ is a directed subgraph of $\Gamma$ 
+and $a$ is an involution of $\Gamma$ which fixes an arc.
+The subgraph graph  $\sub(\Gamma, \Upsilon, a)$
+of $\Gamma$ with respect to $\Upsilon$ and $a$
+is the graph with vertices  $V = \{ \Upsilon^g : g \in G \}$
+and arcs $A = \{ (\Upsilon \cup \Upsilon^a)^g : g \in G \}$.
+\end{definition}
+
+\begin{proposition}
+Subgraph graph's are symmetric, with point stabilizer $G_{\Upsilon}$.
+\begin{proof}
+Obvious.
+\end{proof}
+\end{proposition}
+
+\begin{example} [cube from tetrahedron]
+Let $\Gamma$ be the tetrahedron with $S4$ acting on it.
+Let $\Upsilon$ be any directed three-cycle.
+Let $a$ be any involution fixing an arc of $\Upsilon$,
+then the subgraph graph $\sub(\Gamma,\Upsilon,a)$
+is isomorphic to the cube.
+\end{example}
+
+
+\begin{definition} [Symmetric subgraph]
+Suppose that $(G,\Gamma)$ is a symmetric graph.
+The digraph $\Upsilon < \Gamma$ is a {\it symmetric subgraph}
+of $\Gamma$ if $(G_\Upsilon, \Upsilon)$ is a symmetric graph.
+\end{definition}
+
+\begin{question}
+If $(G, \Gamma)$ is a symmetric graph, for which subgroups $K$ of $G$
+do their exist a subgraphs of $\Upsilon$ of $\Gamma$ such that
+$G_\Upsilon = K$ ?
+For which subgroups $K$ of $G$
+do their exist a {\it symmetric subgraph} $\Upsilon$ of $\Gamma$ such that
+$G_\Upsilon = K$ ?
+\end{question}
+
+\begin{question}
+Which extensions of a given $G$-symmetric graph $\Gamma$
+are isomorphic to subgraph graphs of $\Gamma$ ?
+Which are isomorphic to subgraph graphs of $\Gamma$
+with respect to some symmetric subgraph (digraph) of $\Gamma$ ?
+\end{question}
+
+
+

@@ -1,0 +1,585 @@
+\chapter{The Extension Problem}
+
+We would like to understand
+how a symmetric graph $(G, \Gamma)$ can be ``unfolded''
+into a larger imprimitive symmetric graph $(\widetilde{G}, \widetilde{\Gamma})$
+admitting the original graph as a quotient.
+In particular we'd like to understand how pairs of graphs
+$(\Gamma, \widetilde{\Gamma})$ where $\widetilde{\Gamma}$
+is an ``extension'' of $\Gamma$ are related combinatorially.
+That is, we'd like to be able to describe the the structure
+of the graph $\widetilde{\Gamma}$
+in terms of the structure of the graph $\Gamma$.
+
+The quotient of a symmetric graph contains considerably less information
+than the original graph.
+Gardiner and Praeger \cite{GPL1993} observed that
+some of the information that is lost
+may be recovered from the induced bipartite graph 
+between adjacent blocks of the partition,
+and from a combinatorial design induced on the blocks themselves.
+
+In this chapter we describe Gardiner and Praeger's observations
+as well as some of the questions is raises.
+
+\section{Induced Bipartite graph}
+
+% Introductory remarks
+
+Let $\Gamma$ be an imprimitive $G$-symmetric graph,
+with $\cB$ a non-trivial $G$-invariant partition of the vertices.
+As always, we assume that the quotient $\Gamma_\cB$ has valency at least one,
+so the blocks of $\cB$ are independent sets.
+For any arc $(B,C)$ of the quotient,
+the subgraph of $\Gamma$ induced by $B \cup C$ must be bipartite --
+possibly containing some isolated vertices.
+If we restrict ourselves to the subgraph induced by
+$(\Gamma(C) \cap B) \cup (\Gamma(B) \cap C)$
+then we obtain a bipartite graph with no isolated vertices.
+We call this graph the {\it induced bipartite graph} of $(B,C)$,
+and denote it by $\Gamma[B,C]$.
+
+\begin{proposition}
+The induced bipartite graph $\Gamma[B,C]$ is $G_{B \cup C}$ symmetric.
+\begin{proof}
+Let $(\alpha,\beta)$ and $(\gamma,\delta)$ be any two arcs of $\Gamma[B,C]$.
+Without loss of generality we may assume that $\alpha \in B$ and $\beta \in C$.
+By the $G$-symmetry of $\Gamma$ we can find $g \in G$ such that
+$(\alpha,\beta)^g = (\gamma,\delta)$.
+Since $\Gamma[B,C]$ is bipartite, either $\gamma \in B$ and $\delta \in C$ 
+in which case $B^g = B$ and $C^g = C$,
+or $\gamma \in C$, $\delta \in B$, in which case $B^g = C$ and $C^g = B$.
+Either way, $g \in G_{B \cup C}$ and the result follows.
+\end{proof}
+\end{proposition}
+
+
+\begin{proposition}
+For any two arcs in the quotient, the induced bipartite graphs are isomorphic.
+\begin{proof}
+Let $(B,C)$ and $(D,E)$ be any two arcs of $\Gamma_\cB$.
+Since $\Gamma_\cB$ is $G$-symmetric we can find some $g \in G$
+such that $(B,C)^g = (D,E)$. Clearly
+$$(\Gamma(C) \cap B)^g = (\Gamma(C^g) \cap B^g) = (\Gamma(E) \cap D),$$
+and
+$$(\Gamma(B) \cap C)^g = (\Gamma(B^g) \cap C^g) = (\Gamma(D) \cap E).$$
+So $g$ induces a bijection
+$$(\Gamma(C) \cap B) \cup (\Gamma(B) \cap C)
+\to (\Gamma(E) \cap D) \cup (\Gamma(D) \cap E).$$
+Since $g$ is an automorphism, adjacency is preserved and we have an isomorphism
+from $\Gamma[B,C]$ to $\Gamma[D,E]$.
+\end{proof}
+\end{proposition}
+
+%Note that if $(B,C)$ and $(D,E)$ are any two arcs of $\Gamma_\cB$
+%then $G_{B \cup C}$ is isomorphic to $G_{D \cup E}$
+%though they are not actually {\it the same} group.
+%They are different isomorphic subgroups of $G$.
+%Let $\cA$ denote the isomorphism class of groups
+%to which $G_{B \cup C}$ and $G_{D \cup E}$ both belong.
+%The two grphs $\Gamma[B,C]$ and $\Gamma[D,E]$
+%are $\cA$-equivalent, but not $\cA$-isomorphic.
+
+
+When passing from a symmetric graph to its quotient
+we preserve the adjacency structure of the blocks,
+and discard the exact details of which vertices are connected to which others.
+Some of the information that has been lost is recoverable from the induced bipartite graph.
+But the induced bipartite graph reveals only the {\it local} connectivity.
+To reconstruct the original graph from its quotient we need to know
+how these induced bipartite graphs are ``glued together''.
+Gardiner and Praeger observed that some of this global information about
+the way the induced bipartite graphs fit together is captured in a combinatorial design
+induced on each of the blocks.
+Before we can describe this design we need a little background.
+
+
+
+\section{Combinatorial Designs}
+
+% Need to talk about connection between design theory and geometry.
+
+%Connection with group theory:
+%Many interesting groups, including a number of
+%the sporadic simple groups arise as automorphism
+%groups of $t$-designs.
+
+\begin{definition}
+An {\it incidence structure} is a triple $(P,B,I)$
+where $P$, and $B$ are sets, usually refered to as
+{\it points} and {\it blocks} respectively,
+and $I$ is an {\it incidence relation} $I \subseteq P \times B$.
+\end{definition}
+
+It is often convenient to visualize an incidence structure
+as a bipartite graph. 
+Take the points as vertices of one side of
+the bipartition and the blocks as vertices of the other.
+Draw an edge between the vertex corresponding to a point $p$
+and the vertex corresponding to a block $b$ if and only if
+$(p,b) \in I$.
+
+We will be interested in incidence structures
+satisfying strong regularity and symmetry conditions.
+
+\begin{definition}
+A $(v,k,\lambda)$-design is an incidence structure such that:
+\begin{enumerate}
+\item There are $v$ points in total
+\item Each block is incident with exactly $k$ points
+\item Each point is incident with exactly $\lambda$ blocks
+\end{enumerate}
+\end{definition}
+
+When visualizing an incidence structure as a bipartite graph,
+the extra regularity conditions of a design correspond 
+to the condition that 
+any two vertices in the same bipartite half of the graph
+must have the same valency.
+
+Note that our definition here of a ``design'' 
+corresponds to what is usually refered to as a $1$-design 
+or ``tactical configuration'' in the literature.
+There is a more general definition of a $t$-design
+of which the definition of a $1$-design is a special case.
+We will not be needing this more general definition.
+
+% Connection with geometry?
+
+%As an example, the points and lines of the projective plane 
+%over a field of $q$ elements, for $q$ a prime power, 
+%form a $(q^2 + q + 1,q + 1,q + 1)$-design. 
+%The points and lines of the affine plane over a field with $q$ elements 
+%form a $(q^2,q,q)$ design. 
+%In a very loose sense designs, particularly $2$-designs,
+%may be viewed as generalized finite geometries.
+
+
+The incident point-block pairs of a design are usually refered to as {\it flags}.
+For a design $\cD$ we will use the notation
+$P_\cD$, $B_\cD$ and $F_\cD$ to denote the points,
+blocks and flags of $\cD$ respectively.
+
+Define the {\it trace} of a block $b$ to be the set
+$T(b) = \{ p \in P : (p,b) \in I \}$.
+Simmilarly define the {\it trace} of a point $p$
+to be the set $T(p) = \{b \in B : (p,b) \in I \}$.
+
+\begin{proposition}
+In a design, the number of blocks with the same trace is a constant 
+that is independent of the choice of block
+\end{proposition}
+
+We denote this constant by $m$ and call it the 
+{\it multiplicity} of the design.
+If distinct blocks have distinct traces,
+then we may identify the blocks with their traces,
+and take $B$ to be a subset of the power set of $P$.
+Otherwise we say that the design contains {\it repeated blocks}.
+
+\begin{proposition}
+If a design contains repeated blocks,
+then the incidence structure obtained by identifying
+blocks with the same trace is again a design
+\end{proposition}
+
+\begin{definition}
+if $\cD = (P_\cD, B_\cD, I)$ is a $1$-design then the {\it dual} 
+of $\cD$ is the design $ \cD^{*} = (B_\cD, P_\cD, I^{*})$
+where $(b,p) \in I^{*}$ if and only if $(p,b) \in I$.
+\end{definition}
+
+\begin{proposition}
+The dual of a $1$-design is a $1$-design.
+\end{proposition}
+
+
+
+\section{Flag Transitive Designs}
+
+An automorphism of a design $\cD$ is a pair $(\eta, \mu)$ of bijections
+$\eta : P_\cD \to P_\cD$ and $\mu : B_\cD \to B_\cD$
+with the property that $(p,b)$ is a flag of $\cD$
+if and only if $(\eta(p), \mu(b))$ is a flag.
+The automorphisms of a design form a group.
+
+As with sets and graphs, we say that a group $G$ acts on a design $\cD$
+as a group of automorphisms if there is some homomorphism $\rho : G \to \Aut(\cD)$.
+We don't require this homomorphism to be injective, that is we don't
+require that $G$ acts {\it faithfully} on $\cD$.
+
+If the group $G$ acts on the design $\cD$ as a group of automorphisms
+then we get three induced permutation groups, namely:
+
+\begin{enumerate}
+\item $(G, P_\cD)$ -- The induced permutation group on the points.
+\item $(G, B_\cD)$ -- The induced permutation group on the blocks.
+\item $(G, F_\cD)$ -- The induced permutation group on the flags.
+\end{enumerate}
+
+
+We will be interested in highly symmetric designs.
+In particular, we will be interested in pairs $(G, \cD)$
+where $G$ acts on $\cD$ in such a way that the induced
+permutation group on the flags $(G, F_\cD)$ is transitive.
+We will either call the pair $(G, \cD)$ a flag-transitive design,
+or we call the design $\cD$ a $G$-flag transitive design.
+Many interesting groups arise naturally as flag-transitive
+automorphism groups of designs, including a number
+of the sporadic simple groups.
+
+\begin{proposition}
+If $(G,\cD)$ is a flag-transitive design
+then the induced permutation groups $(G,P_\cD)$ and $(G,B_\cD)$
+are both transitive
+\end{proposition}
+
+%Suppose that $\cD$ is a $G$-flag transitive design, and $(p,b)$ is some flag.
+%If $H$ is the stabilizer of $p$, then $(G,P_\cD)$ is a transitive permutation group
+%which is permutationally isomorphic to $(G,\cos(H))$.
+%If $S$ is the stabilizer of $b$, then $(G,B_\cD)$ is a transitive permutation group
+%which is permutationally isomorphic to $(G,\cos(S))$.
+
+\begin{proposition}
+If $(G,\cD)$ is a flag-transitive design and $H_1 < G$
+is the stabilizer of some point $p$ then the
+induced permutation group $(H_1, T(p))$ is transitive.
+Simmilarly if $H_2 < G$ is the stabilizer of some block $b$
+then the induced permutation group $(H_2, T(b))$ is transitive.
+\end{proposition}
+
+%Let $R = S \cap H$, then $R$ stabilizes the flag $(p,b)$.
+%Let $B(p)$ denote the blocks of $\cD$ incident with $p$
+%and let $P(b)$ denote the points of $\cD$ incident with $b$.
+%The action of $H$ on $B(p)$ is permutationally isomorphic to $(H,\cos(R))$
+%and the action of $S$ on $P(b)$ is permutationally isomorphic to $(S, \cos(R))$.
+
+If $\cD_1$ and $\cD_2$ are two $G$-flag transitive designs, 
+then a {\it $G$-design homomorphism} from $\cD_1$ to $\cD_2$
+is a pair of maps $\rho = (\rho_P, \rho_B)$
+such that:
+
+\begin {enumerate}
+\item $\rho_P : P_{\cD_1} \to P_{\cD_2}$ induces a permutation homomorphism between 
+$(G,P_{\cD_1})$ and $(G,P_{\cD_2})$.
+\item $\rho_B : B_{\cD_1} \to B_{\cD_2}$ induces a permutation homomorphism between 
+$(G,B_{\cD_1})$ and $(G,B_{\cD_2})$.
+\item $(p,b) \in I_1$ if and only if $(\rho_P(p), \rho_B(b)) \in I_2$.
+\end{enumerate}
+
+When both $\rho_P$ and $\rho_B$ are bijections we have a {\it $G$-design isomorphisms}.
+When confusion is unlikely to result, 
+we will sometimes write $\rho(p)$ instead of $\rho_P(p)$ when $p$ is a point
+and $\rho(b)$ instead of $\rho_B(b)$ when $b$ is a block.
+
+\begin{proposition}
+If $\rho$ is a $G$-design homomorphism from $\cD_1$ to $\cD_2$
+then $\rho$ induces a $G$-permutation homomorphism from $F_{\cD_1}$ to $F_{\cD_2}$.
+\end{proposition}
+
+%For a fixed $G$ the set of all $G$-flag transitive designs
+%with $G$-design homomorphisms between them form a category which we shall denote by
+%$G$-Flag.
+\section{$G$-symmetric designs}
+
+In this section we show how $G$-symmetric designs
+may be viewed as a special kind of flag-transitive design.
+I'm calling them symmetric designs, but I think
+they should probably be called square designs.
+
+\begin{definition}
+A $G$-flag transitive design $\cD$ is {\it self-dual}
+if there exists a $G$-isomorphism $\rho = (\rho_P, \rho_B)$
+between $\cD$ and $\cD^{*}$.
+The $G$-isomorphism $\rho$ is called a {\it duality} of $\cD$.
+\end{definition}
+
+\begin{definition}
+A {\it $G$-symmetric design} is self-dual $G$-flag transitive design $\cD$
+which admits a dulaity $\rho = (\rho_P, \rho_B)$ with the property that
+$\rho_B \circ \rho_P = id_P$ and $\rho_P \circ \rho_B = id_B$.
+In this case the $G$-isomorphism $\rho$ is called a {\it polarity}
+of $\cD$.
+\end{definition}
+
+Observe that if $\cD$ is a $G$-symmetric design with the property
+that $(p, \rho(p))$ is a a flag for some $p \in P_\cD$,
+then since $\rho$ is a $G$-isomorphism it follows
+that the point-stabilizer of $\cD$ is isomorphic to the flag-stabilizer of $\cD$.
+Thus each point is incident with exactly one block
+and vice versa.
+We consider such $G$-symmetric designs to be ``degenerate'',
+and unless an explicit statement to the contrary is given shall
+take the expression ``$G$-symmetric design''
+to mean ``non-degenerate $G$-symmetric design''.
+
+In a sense that will become clear a little later,
+these ``degenerate'' $G$-symmetric
+designs correspond to the ``degenerate'' orbital graph $\orb_\Delta(G,\Omega)$
+which could be formed from the permutation group $(G, \Omega)$
+by taking $\Delta$ to be the diagonal orbit,
+and also to the ``degenerate'' Sabidussi graph $\sab(G,H,a)$
+which could be formed by taking $a \in H$.
+\hfill \break
+
+We shall see that each $G$-symmetric graph
+gives rise in a natural way to a $G$-symmetric design
+and conversely a $G$-symmetric design together
+with a ``marked'' polarity give rise to a $G$-symmetric graph.
+We shall also see that in some cases, by choosing a different
+polarity it is possible to construct two non-isomorphic $G$-symmetric
+graphs from the same $G$-symmetric design.
+For any graph $\Gamma$, let $N \Gamma = \{ \Gamma(v) : v \in V \Gamma \}$
+denote the set of {\it neighbourhoods} of $\Gamma$.
+
+\begin{proposition}
+If \/ $\Gamma$ is a $G$-symmetric graph,
+then the incidence structure $\cD(\Gamma) = (V \Gamma, N \Gamma,I)$
+where $(v,n) \in I$ if and only if $v \in n$ is a $G$-symmetric design
+\begin{proof}
+The $G$-arc transitivity of $\Gamma$ is sufficient to ensure
+that $\cD(\Gamma)$ is a $G$-flag transitive design.
+To see that it is in fact
+a $G$-symmetric design we must exhibit a polarity.
+
+Let $\rho_P : P \to B$ be given by $v \mapsto \Gamma(v)$.
+The map $\rho_P$ is clearly bijective, and since $G$ acts on $\Gamma$
+as a group of automorphisms we have:
+\begin{eqnarray*}
+\rho_P(v^g) & = & \Gamma(v^g) \\
+            & = & \Gamma(v)^g \\
+	                & = & \rho_P(v)^g.
+			\end{eqnarray*}
+			So $\rho_P$ induces a permutation isomorphism.
+			Now, take $\rho_B = \rho_P^{-1}$.
+			We must check that the pair $\rho = (\rho_P, \rho_B)$ preserve
+			the incidence structure of the design.
+
+Suppose that $(v,\Gamma(w))$ is a flag of $\cD$, so $v \in \Gamma(w)$.
+Since $\Gamma$ is a simple graph it follows immediately that $w \in \Gamma(v)$
+and so $(w, \Gamma(v))$ is also a flag of $\cD$.
+That is $(\Gamma(v), w)$ is a flag of $\cD^{*}$.
+But
+\begin{eqnarray*}
+\rho((v, \Gamma(w))) & = & (\rho_P(v), \rho_B(\Gamma(w))) \\
+                     & = & (\Gamma(v), w).
+		     \end{eqnarray*}
+		     So we are done.
+
+		     \end{proof}
+		     \end{proposition}
+
+\begin{proposition}
+If $\cD$ is a (non-degenerate) $G$-symmetric design with ``marked'' polarity $\rho$
+then the graph $\Gamma(\cD, \rho)$ with vertex set $P_\cD$
+and arc set $\{ (p,q) : (q,\rho_P(p)) \in I_\cD \}$ is $G$-symmetric.
+\begin{proof}
+We must first check that $\Gamma(\cD, \rho)$ is well-defined.
+The non-degenerateness of $\cD$ ensures that there are no loops.
+If $(p,q)$ is an arc of $\Gamma(\cD, \rho)$
+then $(q, \rho_P(p))$ is a flag of $\cD$.
+Since $\rho$ is an isomorphism,
+if $(q, \rho_P(p))$ is a flag of $\cD$
+then $(\rho_P(q), \rho_B \circ \rho_P(p)) = (\rho(q), p)$
+is a flag of $\cD^{*}$.
+It follows that $(p,\rho(q))$ is a flag of $\cD$,
+and thus $(q,p)$ is an arc of $\Gamma(\cD, \rho)$.
+So $\Gamma(\cD, \rho)$ is simple.
+
+
+By proposition [?] $G$ acts transitively on the points $\cD$
+so $\Gamma(\cD, \rho)$ is $G$-vertex transitive.
+Suppose that $(p,q_1)$ and $(p,q_2)$ are two distinct arcs of
+$\Gamma(\cD, \rho)$. Then we have $q_1, q_2 \in T(\rho(p))$.
+By proposition [?]
+the stabilizer of $\rho(p)$ acts transitively on $T(\rho(p))$.
+Thus we can find some $g \in G$ which fixes $\rho(p)$ and
+carries $q_1$ to $q_2$.
+Since $\rho$ is a $G$-isomorphism, if $g$ fixes $\rho(p)$
+it also fixes $p$, thus $g$ carries the arc $(p,q_1)$
+to the arc $(p,q_2)$. So $\Gamma(\cD, \rho)$ is $G$-locally
+transitive. The result follows.
+
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+For any design $\cD$ and any polarity $\rho$ the design $\cD(\Gamma(\cD,\rho))$
+is isomorphic to $\cD$
+\begin{proof}
+later
+\end{proof}
+\end{proposition}
+
+%\begin{definition}
+%If $\cD_1$ and $\cD_2$ are two $G$-symmetric designs
+%then a $G$-design homomorphism from $\cD_1$ to $\cD_2$
+%is a pair of permutation homomorphisms $\eta_P : P_1 \to P_2$ and $\eta_B : B_1 \to B_2$
+%satisfying $(p,b) \in I_1$ implies $(\eta_P(p),\eta_B(b)) \in I_2$.
+%\end{definition}
+
+%\begin{proposition}
+%If $\cD_1$ and $\cD_2$ are two $G$-symmetric designs
+%then a $G$-design homomorphism from $\cD_1$ to $\cD_2$
+%induces a a $G$-permutation homomorphism from the flags of $\cD_1$
+%to the flags of $\cD_2$
+%\end{proposition}
+
+%What I want to say is that $G$-symmetric designs
+%together with $G$-design homomorphisms form a category
+%(well, kind of more of a poset really).
+%I also want to say that the category $G$-Graph
+%``projects down'' onto the category $G$-Design.
+%$F : G$-Graph $\to G$-Design.
+%If there's a $G$-graph homomorphism from $x$ to $y$
+%then there's a $G$-design homomorphism from $F(x)$ to $F(y)$
+
+
+
+\section{``cross-section'' of a graph homomorphism}
+
+Suppose that $\Gamma$ is an imprimitive $G$-symmetric graph
+with $\cB$ a non-trivial $G$-invariant partition of the vertices.
+Assume further that the quotient $\Gamma_\cB$ has valency
+at least one so that the blocks of $\cB$ are independent sets.
+
+For any vertex $\alpha$ of $\Gamma$, let $B(\alpha)$ denote
+the block of $\cB$ containing $\alpha$.
+Let $\Gamma(\alpha) = \{ \beta \in V \Gamma : (\alpha, \beta) \in A \Gamma \}$
+denote the neighbours of $\alpha$ in $\Gamma$.
+Let $\Gamma_\cB(B) = \{ C \in \cB : (B,C) \in A \Gamma_\cB \}$
+denote the neighbours of $B$ in the quotient.
+For any $\alpha \in B$, let
+$\Gamma_\cB(\alpha) = \{ B(\beta) : \beta \in \Gamma(\alpha) \}$
+denote the blocks of $\cB$ containing the neighbours of $\alpha$ in $\Gamma$.
+
+Construct a design with point set $B$, block set $\Gamma_\cB(B)$
+and an incidence relation $ I \subseteq B \times \Gamma_\cB(B)$
+defined by $(\alpha, C) \in I$ if and only if $C \in \Gamma_\cB(\alpha)$.
+
+\begin{proposition}
+The incidence structure $\cD(B) = (B, \Gamma_\cB(B), I)$ is a $H$-flag transitive
+$(v,k,\lambda)$ design, where:
+\begin{eqnarray*}
+v & := &  |B| \\
+k & := &  |\Gamma(C) \cap B|, \\
+\lambda  & := &  |\Gamma_\cB(\alpha)| \\
+\end{eqnarray*}
+and $H$ is the stabilizer of the block $B \in \cB$.
+\end{proposition}
+	      
+The design $\cD(B)$ gives, in a sense, a ``cross-section''
+of the homomorphism $\Gamma \mapsto \widetilde{\Gamma}$.
+
+\section{Reconstruction problem}
+
+Gardiner and Praeger observed that if $\Gamma$ is a $G$-symetric graph
+and $\cB$ is a non-trivial $G$-invariant partition of the vertices,
+then the graph $\Gamma$ ``decomposes''
+into the triple $(\Gamma_\cB, \Gamma[B,C], \cD(B))$.
+
+We may ask now, to what extent the combinatorial structure of $\Gamma$
+is determined by the triple $(\Gamma_\cB, \Gamma[B,C], \cD(B))$?
+Do these three components contain sufficient information
+to reconstruct $\Gamma$ uniquely?
+If not, what extra information is required?
+
+%The problem then becomes that of reconstructing $\Gamma$ 
+%from the triple $(\Gamma_\cB, \Gamma[B,C], \cD(B))$.
+
+
+Suppose we are given a symmetric graph $\Lambda$,
+a symmetric bipartite graph $\Sigma$ and a flag transitive design
+$\cD$ without any particular groups acting upon them.
+Let us say that a symmetric graph $\Gamma$ is 
+``product'' of $(\Lambda, \Sigma, \cD)$ if there is a group $G$
+acting $\Gamma$ and a $G$-invariant partition $\cB$ of
+the vertices of $\Gamma$
+such that the triple $\Gamma$ decomposes into the triple
+$(\Lambda, \Sigma, \cD)$ 
+
+What are the necessary and sufficient
+conditions under which these three components $(\Lambda, \Sigma, \cD)$
+can be ``glued together'' into some ``product'' $\Gamma$ ?
+
+If the necessary conditions are satisfied,
+could there be more than one way to ``glue together'' a given 
+triple $(\Lambda, \Sigma, \cD)$ into an imprimitive symmetric graph 
+$\Gamma$ ?
+
+%\section{Rephrasing the Problem}
+%
+%If we ignore the induced bipartite graph for a moment,
+%then the map $\Gamma \mapsto (\Gamma_\cB, \cD(B))$
+%actually induces a functor from $G$-Graph into the caretesian product
+%category ($G$-Flag, $G$-Graph). 
+%Well, to be rigerous we've got to describe what happens to the morphisms,
+%but its the obvious thing.
+%Let us call this functor $D$.
+%It is not hard to find examples to show that this functor is not injective.
+%
+%In the next section we shall define a new category,
+%called $G$-Designs, and show that there exists a forgetful functor $F$
+%from $G$-Graph into $G$-Design.
+%We will then define a functor $E$ from $G$-Design to ($G$-Design, $G$-Flag)
+%analogous to $D$.
+%We will show that if $F'$ is the functor from ($G$-Graph, $G$-Flag) to 
+%($G$-Design, $G$-Flag)
+%given by $F'(x,y) = (F(x),y)$ then $E$
+%has the property that $E \circ F(x) = F' \circ D(x)$ for any $x \in G$-graph.
+%Finally we will conject that $E$ is in fact injective.
+
+%\newpage
+%\section{This goes elsewhere}
+%We must pause for a moment to highlight an important distinction
+%between a symmetric graph and a $G$-symmetric graph.
+%We say that a graph $\Gamma$ is symmetric if it is $\Aut(\Gamma)$-symmetric.
+%Simmilarly we say that a design $\cD$ is flag-transitive if it is 
+%$\Aut(\cD)$-flag transitive.
+%
+%It is often the case however that for a given symmetric graph $\Gamma$
+%there is a subgroup $G$ of the full automorphism group
+%which also acts symmetrically on the graph.
+%In this case the graph will be $G$-symmetric as well as $\Aut(\Gamma)$-symmetric.
+%We saw an example of this in Chapter 1 when we constructed the cube
+%as an orbital graph of $(S_4, \cos(C_3))$ but found its full automorphism group
+%is in fact $S_4 \times Z_2$.
+%A simmilar ``problem'', also arises with flag-transitive designs.
+%
+%For a given symmetric graph $\Gamma$ let $\Grp(\Gamma)$ denote
+%the set of subgroups (upto isomorphism) of $\Aut(\Gamma)$ which act symmetrically
+%on $\Gamma$. Simmilarly, for a given flag-transitive design, $\cD$
+%let $\Grp(\cD)$ denote the set of subgroups (upto isomorphism) 
+%of $\Aut(\cD)$ which act symmetrically on $\cD$.
+%Then, for a given group $G$, $\Gamma$ is $G$-symmetric 
+%if and only if $G$ admits some element of $\Grp(\Gamma)$ as a composition factor. 
+%Simmilarly $\cD$ is $G$-flag transitive if and only if
+%$G$ admits some element of $\Grp(\cD)$ as a composition factor.
+%
+%The study of $G$-symmetric graphs can thus be approached in two different ways.
+%The first is to fix the group $G$ and examine the family of graphs $\Gamma$
+%which admit a symmetric action of $G$, in the hope that this will reveal
+%some information about the group $G$.
+%The second approach is to fix a graph $\Gamma$ and study the groups
+%which act symmetrically on $\Gamma$ in the hope that this will
+%reveals some information about the graph $\Gamma$.
+
+%\section{Also to go elsewhere}
+
+%In chapter 1, we saw that there were two different orbital
+%graphs associated with the permutation group $(S_4, \cos(C3))$.
+%which admitted the tetrahedron as a quotient.
+%One of these was isomorphic to the cube and the other was
+%isomorphic to two vertex disjoint tetrahedra.
+%One can check that in both cases ``induced bipartite graph''
+%of the decomposition
+%is isomorphic to $2K_2$ and the ``cross-sectional geometry''
+%is the highly degenerate $(2,2,3)$-design consisting of the same
+%$2$-element block repeated $3$ times.
+
+%Thus we know that the answer to this last question is definitely
+%``yes''. For a given triple $(\Lambda, \Sigma, \cD)$
+%there may be more than one way of ``gluing'' them together
+%into some imprimitive symmetric graph $\Gamma$.
+%The triple $(\Gamma_\cB, \Gamma[B,C], \cD)$ does not, in general,
+%contain sufficient information to reconstruct $\Gamma$ uniquely.

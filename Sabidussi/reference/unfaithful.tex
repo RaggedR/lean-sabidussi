@@ -1,0 +1,695 @@
+\documentclass[12pt]{amsart}
+\usepackage[all]{xy} % for commutative diagrams
+\usepackage{amsmath} % various goodies
+\usepackage{amsthm} % some stuff for theorem numbering
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%% Theorem-type environments.
+% The first parameter to \newtheorem is what the environment is called in the 
+% LaTeX source. (What goes into the braces after \begin and \end.)
+% The second is the name that shows up in the text.
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+% (Criterion, Algorithm)
+
+\theoremstyle{definition} 
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{todo}{To Do}
+% (Condition, Problem)
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+% (Notation, Claim, Summary, Acknowledgement, Case, Conclusion)
+
+%% Math operators (easy thanks to amsmath)
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\core}{Core}
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\cay}{Cay}
+\DeclareMathOperator{\sab}{Sab}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\arc}{Arc}
+\DeclareMathOperator{\grp}{Grp}
+\DeclareMathOperator{\ext}{Ext}
+
+% Commands:
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cD}{\mathcal{D}}
+
+% lazy
+\newcommand{\arbitraryset}{\mathcal{X}}
+\newcommand{\open}{\mbox{``}}
+\newcommand{\close}{\mbox{''}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+
+\begin{document}
+
+\title{Quotients and Extensions}
+\maketitle
+
+
+%Butterflies in bloom. See how the grow from a small seed into such majestic beings?
+
+\section{Quotient Graphs}
+
+
+In the first section of this Chapter,
+we determined, for any two transitive permutation groups
+$(G, \Omega_1)$ and $(G,\Omega_2)$,
+the conditions under which there exists a
+$G$-homomorphism from $(G,\Omega_1)$ to $(G,\Omega_2)$.
+
+We saw that if $(G,\Omega_1)$
+is permutation equivalent to $(G,\cos_G(H))$
+for some $H < G$,
+and $(G,\Omega_2)$ is permutation equivalent
+to $(G,\cos_G(K))$ for some $K < G$,
+then there is a $G$-homomorphism from $(G,\Omega_1)$
+to $(G,\Omega_2)$ if and only if $H < K < G$.
+
+In this section we give analogous conditions
+under which there exists a $G$-homomorphism
+from a $G$-symmetric graph $\Gamma$
+to a $G$-symmetric graph $\Sigma$.
+
+\begin{theorem} [Lorimer]
+If $\Gamma$ is a $G$-symmetric graph isomorphic to $\sab(G,H,HaH)$
+and $\Sigma$ is a quotient of $\Gamma$,
+then $\Sigma$ is isomorphic to $\sab(G,K,KaK)$ for some $H < K < G$
+with $a \not\in K$.
+\begin{proof}
+Suppose that $\pi : \Gamma \to \Sigma$ is a $G$-graph homomorphism.
+Since $\Gamma$ is $G$-isomorphic to $\sab(G,H,HaH)$,
+the action of $G$ on the vertices of $\Gamma$ is permutation
+equivalent to $(G,\cos_G(H))$.
+Since $\pi$ induces a homomorphism from $V \Gamma$ to $V \Sigma$,
+by [where?] $(G,V \Sigma)$
+must be permutation equivalent to $(G,\cos_G(K))$
+for some $K$ with $H < K < G$.
+What about the $a$?
+\end{proof}
+\end{theorem}
+
+\section{Extension Problem}
+
+For a given symmetric graph $\Gamma$, let $\grp(\Gamma)$ denote
+the set of subgroups of $\Aut(\Gamma)$ 
+which act symmetrically on $\Gamma$.
+For a given group $G$, let $\ext(G)$ denote the set of groups $\widetilde{G}$
+such that $\widetilde{G}/N \cong G$ for some $N$ normal in $\widetilde{G}$.
+Clearly $\Gamma$ is $\widetilde{G}$-symmetric if and only if
+$\widetilde{G} \in \ext(G)$ for some $G \in \grp(\Gamma)$.
+
+\begin{definition}
+The symmetric graph $(\widetilde{G},\widetilde{\Gamma})$
+is said to be an {\it extension} of the symmetric graph $(G,\Gamma)$
+if $\widetilde{G} \in \ext(G)$
+and there exists a $\widetilde{G}$-homomorphism
+from $\widetilde{\Gamma}$ to $\Gamma$.
+\end{definition}
+
+The ``extension problem'' for symmetric graph
+is the problem of finding all the extensions
+of a given symmetric graph $(G,\Gamma)$.
+
+On a group theoretic level, if we knew the subgroup structure of $G$
+and we knew all the groups $\widetilde{G}$ which admit $G$ as a 
+quotient then in a sense we would ``know'' all the possible 
+extensions of $(G,\Gamma)$.
+
+\begin{proposition}
+If $\Gamma$ is $G$-isomorphic to $\sab(G,H,HaH)$
+then the faithful extensions of $\Gamma$
+are the graphs of the form $\sab(G,K,KaK)$
+where $K < H$ and $KaK \subset HaH$.
+\end{proposition}
+
+\begin{proposition}
+For any $\widetilde{G} \in \ext(G)$, let $N \triangleleft G$
+be such that $\widetilde{G}/N \cong G$
+and let $\pi : \widetilde{G} \to G$ be the natural projection.
+The $\widetilde{G}$-symmetric extensions of $\Gamma$
+are the graphs of the form 
+$\sab(\widetilde{G},R,R\widetilde{a}R))$
+where $\pi(R) < H$ and $\pi(a) \in HaH$.
+\end{proposition}
+
+From a combinatorial perspective, 
+if $(\widetilde{G},\widetilde{\Gamma})$ 
+is an extension of $(G,\Gamma)$
+then we would like to understand
+how the structure of $\widetilde{\Gamma}$
+is related to the structure of $\Gamma$.
+Ideally, we'd like to be able to describe the adjacency
+structure of $\widetilde{\Gamma}$ in terms of the
+adjacency structure of $\Gamma$.
+
+\section{Unfaithful Extensions}
+
+Recall from Chapter 1, that in our definition of a symmetric
+graph, we do not require the action of the group
+to be faithful on the vertices of the graph.
+Suppose that $\Gamma$ is a $G$-symmetric graph
+isomorphic to $\sab(G,H,HaH)$.
+The vertices of $\Gamma$ are the cosets of $H$ in $G$
+and the action of $G$ on the vertices of $\Gamma$
+is the permutation group $(G,\cos_G(H))$.
+By proposition [?] the {\it kernel} of this action is:
+$$\core_G(H) = \bigcap_{g \in G} g^{-1}Hg.$$
+If this kernel is non-trivial then the action of $G$
+on the vertices of $\Gamma$ is unfaithful.
+
+\begin{proposition}
+% careful with the a
+For any pair of groups $\wt{G}$ and $\wt{H}$ with $\wt{H} < \wt{G}$,
+and any $a \in \wt{G}$ with $\wt{a}^2 = 1$ and $\wt{a} \not\in \wt{H}$,
+the graphs
+$\sab(\wt{G},\wt{H},\wt{H}a\wt{H})$ and $\sab(G, H, HaH)$
+are isomorphic where: 
+\begin{eqnarray*}
+N  & = &\core_{\wt{G}}(\wt{H}) \\ 
+G & = & \wt{G}/N \\
+H & = & \wt{H}/N
+\end{eqnarray*}
+and $a = \pi(\wt{a})$ where $\pi : \wt{G} \to G$ is the natural projection.
+\begin{proof}
+Let $\wt{\Gamma} = \sab(\wt{G},\wt{H},\wt{H}\wt{a}\wt{H})$ 
+and let $\Gamma = \sab(G,H,HaH)$.
+The vertices of $\wt{\Gamma}$ are the right cosets of $H$ in $G$.
+The vertices of $\Gamma$ are the right cosets of $H/N$ in $G/N$.
+Now,
+\begin{eqnarray*}
+[\wt{G}/N : \wt{H}/N] & = & (|\wt{G}|/|N|)/(|\wt{H}|/|N|) \\
+            & = & |\wt{G}|/|\wt{H}| \\
+	    & = & [\wt{G}:\wt{H}]
+\end{eqnarray*}
+so both $\wt{\Gamma}$ and $\Gamma$ have the same number of vertices.
+Let $\pi : \wt{G} \to G$ be the natural projection.
+Since $N$ is normal in $\wt{H}$, we have $\pi(\wt{H}) = H$.
+Now,
+\begin{eqnarray*}
+H\pi(x) = H\pi(y) & \Leftrightarrow & \pi(xy^{-1}) \in H \\
+                    & \Leftrightarrow & xy^{-1} \in \wt{H} \\
+		    & \Leftrightarrow & \wt{H}x = \wt{H}y \\
+\end{eqnarray*}
+so $\pi$ actually induces a bijection between the cosets of $H$
+in $G$ and the cosets of $H'$ in $G'$.
+To see that it preserves adjacency,
+suppose that $(\wt{H}x,\wt{H}y)$ is any arc of $\wt{\Gamma}$,
+and so $xy^{-1} \in \wt{H}\wt{a}\wt{H}$.
+It follows that $\pi(xy^{-1}) \in HaH$
+and so $(Hx,Hy)$ is an arc of $\Gamma$.
+The result follows.
+\end{proof}
+\end{proposition}
+
+Suppose that $\wt{\Gamma}$ is a symmetric graph 
+isomorphic to $\sab(\wt{G},\wt{H},\wt{H}\wt{a}\wt{H})$.
+Suppose further that $\wt{G}$ acts faithfully on the vertices of $\wt{\Gamma}$.
+Let $\Gamma$ be any quotient of $\wt{\Gamma}$,
+so that, by proposition [?], $\Gamma$ is isomorphic to 
+$\sab(\wt{G},\wt{K},\wt{K}\wt{a}\wt{K})$ for some $\wt{K}$
+such that $\wt{H} < \wt{K} < \wt{G}$ and $\wt{a} \not\in \wt{K}$.
+Although $\wt{G}$ acts faithfully on the vertices of $\wt{\Gamma}$
+it does not follow that $\wt{G}$ acts faithfully 
+on the vertices of the quotient $\Gamma$.
+
+\begin{definition}
+If $(G,\Gamma)$ is a symmetric graph with $G$ acting faithfully on the vertices
+of the $\Gamma$, then an {\it unfaithful} extension of $(G,\Gamma)$
+is an extension of the form $(\widetilde{G},\widetilde{\Gamma})$
+where $\widetilde{G} \neq G$. 
+\end{definition}
+
+
+\begin{proposition}
+Suppose that $(G,\Gamma)$ is a symmetric graph with
+$\Gamma \cong \sab(G,H,HaH)$.
+and that $(\wt{G},\wt{\Gamma})$ is an unfaithful extension
+of $(G,\Gamma)$ with
+$\wt{\Gamma} \cong 
+\sab(\wt{G},\wt{H},\wt{H}\wt{a}\wt{H}))$
+If $\pi : \wt{G} \to G$ is the natural projection, then
+$\pi(\wt{H}) < H$ and $\pi(\wt{a}) \in HaH$.
+\begin{proof}
+Let $N = \ker(\pi))$
+Since $\Gamma$ is a quotient of $\wt{Gamma}$
+we must have 
+$\Gamma \cong \sab(\wt{G},\wt{K},\wt{K}\wt{a}\wt{K}))$
+for some $\wt{H} < K < \wt{G}$.
+Since $\Gamma \cong \sab(G,H,HaH)$
+we must have $\core_{\wt{G}}(K) = N$
+and $\pi(K) = H$.
+Since $\wt{H} < K$ it follows that $\pi(\wt{H}) < \pi(K) < H$.
+What about the $a$?
+\end{proof}
+
+\end{proposition}
+
+\section{Covering Graphs}
+
+\begin{definition}
+The graph $\widetilde{\Gamma}$ is said to be a {\it cover}
+of the graph $\Gamma$ if there exists a graph homomorphism
+$\pi : \widetilde{\Gamma} \to \Gamma$ with the property that.
+For any arc $(B,C)$ of $\Gamma$, and any $v \in \pi^{-1}(B)$
+there is a unique $w \in \pi^{-1}(C)$ such that $(v,w)$
+is an arc of $\widetilde{\Gamma}$.
+\end{definition}
+
+\begin{definition}
+The graph $\widetilde{\Gamma}$ is said to be a {\it cover}
+of the graph $\Gamma$ if there exists a graph homomorphism
+$\pi : \widetilde{\Gamma} \to \Gamma$ with the property that.
+For any arc $(B,C)$ of $\Gamma$, and any $v \in \pi^{-1}(B)$
+there exists some $w \in \pi^{-1}(C)$ 
+(not necessarily unique) such that $(v,w)$
+\end{definition}
+
+Clearly a multicover is a special case of a cover.
+We shall see that in this section
+that if $(\widetilde{G},\widetilde{\Gamma})$
+is an unfaithful extension of $(G,\Gamma)$ then
+$\widetilde{\Gamma}$ is a multicover of of $\Gamma$.
+
+% Nice geometric description + picture for Cale.
+
+\begin{proposition}
+Let $(\widetilde{G},\widetilde{\Gamma})$ be an unfaithful
+extension of $(G, \Gamma)$ and let $N$ be a normal subgroup of 
+$\widetilde{G}$
+such that $\widetilde{G}/N \cong G$.
+If $B$ is any vertex of $\Gamma$ then $N$ acts transitively on
+the fiber $\pi^{-1}(B)$.
+\begin{proof}
+Let $\Delta = \pi^{-1}(B)$.
+By proposition [?], $\Delta$ is a block of imprimitivity
+of $V \widetilde{\Gamma}$.
+Suppose that $\Gamma \cong \sab(G,H,HaH)$ and
+$\widetilde{\Gamma} \cong
+\sab(\widetilde{G},\widetilde{H},\widetilde{H}\widetilde{a}\widetilde{H}))$.
+Then the stabilizer of $\Delta$ is $HN$ and the action
+of $HN$ on the fiber is permutation equivalent to $(HN,\cos(H))$.
+
+\end{proof}
+\end{proposition}
+
+
+\newpage
+
+\section{Combinatorial Perspective}
+
+
+
+In this chapter we look at a number of well-known
+``combinatorial'' methods for constructing
+extensions of symmetric graphs. We first describe the constructions,
+and then analyze them group theoretically.
+In the next chapter we describe a ``geometrical'' approach
+to the extension problem for symmetric graphs which was
+proposed by Gardiner and Praeger.
+
+\section{Direct Sum and Lexicographic Product}
+
+There are a number of ways of forming ``products''
+of graphs. See for example [?].
+
+\begin{definition}
+For any two graphs $\Gamma$ and $\Sigma$,
+then the direct sum of $\Gamma$ and $\Sigma$
+is the graph with vertex set $V \Gamma \times V \Sigma$
+where $(v,x)$ is adjacent to $(w,y)$ if and only
+if $v$ is adjacent to $w$ in $\Gamma$
+and $x$ is adjacent to $y$ in $\Sigma$.
+\end{definition}
+
+\begin{proposition}
+If $\Gamma$ and $\Sigma$ are both symmetric graphs
+then the direct product of $\Gamma$ and $\Sigma$
+is symmetric.
+\end{proposition}
+
+\begin{definition}
+For any two graphs $\Gamma$ and $\Sigma$,
+the lexicographic product of $\Gamma$ by $\Sigma$
+is the graph with vertex set $V \Gamma \times V \Sigma$
+where $(v,x)$ is adjacent to $(w,y)$
+if and only if $v$ is adjacent to $w$ in $\Gamma$
+or $v = w$ and $x$ is adjacent to $y$ in $\Sigma$
+\end{definition}
+
+\begin{proposition}
+If $\Gamma$ is any symmetric graph and $\Sigma$ is the empty
+graph on $n$ vertices, then the lexicographic product
+of $\Gamma$ by $\Sigma$ is symmetric.
+\end{proposition}
+
+%What would still be lacking is a {\it combinatorial} understanding
+%of how the structure of the new graph is related to that of the original.
+%On a practical level we would like to have some method of constructiong 
+%$\widetilde{\Gamma}$ from $\Gamma$. That is, we'd like to be able to describe
+%the adjacency structure of $\widetilde{\Gamma}$ in terms of the adjacency
+%structure of $\Gamma$.
+
+%It may be the case that no uniform description exists for all pairs
+%$(\Gamma, \widetilde{\Gamma})$ where $\Gamma$ is a quotient of $\widetilde{\Gamma}$.
+%Nevertheless it should be possible to identify families of pairs which admit
+%some nice description. These families will be characterized as satisfying
+%some additional combinatorial or group theoretic property. The task is to find
+%which additional constraints will lead to a tight combinatorial coupling between 
+%the symmetric graph $\Gamma$ and its ``extension'' $\widetilde{\Gamma}$.
+%
+%Again there is no reason to believe that any one construction should be suitable
+%for all possible pairs $(\Gamma, \widetilde{\Gamma})$.
+%It would be interesting however to gather together those constructions which are known
+%and analyze the {\it group theoretic} properties which the pairs 
+%$(\Gamma, \widetilde{\Gamma})$ related by this {\it combinatorial} construction share.
+
+%\begin{todo}
+%Talk about lexicographic products and direct sums of graphs.
+%Talk about Bigg's covering graph construction.
+%\end{todo}
+
+
+%\section{This goes elsewhere}
+%We must pause for a moment to highlight an important distinction
+%between a symmetric graph and a $G$-symmetric graph.
+%We say that a graph $\Gamma$ is symmetric if it is $\Aut(\Gamma)$-symmetric.
+%Simmilarly we say that a design $\cD$ is flag-transitive if it is
+%$\Aut(\cD)$-flag transitive.
+
+%It is often the case however that for a given symmetric graph $\Gamma$
+%there is a subgroup $G$ of the full automorphism group
+%which also acts symmetrically on the graph.
+%In this case the graph will be $G$-symmetric as well as $\Aut(\Gamma)$-symmetric.
+%We saw an example of this in Chapter 1 when we constructed the cube
+%as an orbital graph of $(S_4, \cos(C_3))$ but found its full automorphism group
+%is in fact $S_4 \times Z_2$.
+%A simmilar ``problem'', also arises with flag-transitive designs.
+%
+%
+%on $\Gamma$. Simmilarly, for a given flag-transitive design, $\cD$
+%let $\grp(\cD)$ denote the set of subgroups (upto isomorphism)
+%of $\Aut(\cD)$ which act symmetrically on $\cD$.
+%Then, for a given group $G$, $\Gamma$ is $G$-symmetric
+%if and only if $G$ admits some element of $\grp(\Gamma)$ as a composition factor.
+%Simmilarly $\cD$ is $G$-flag transitive if and only if
+%$G$ admits some element of $\grp(\cD)$ as a composition factor.
+%
+%The study of $G$-symmetric graphs can thus be approached in two different ways.
+%The first is to fix the group $G$ and examine the family of graphs $\Gamma$
+%which admit a symmetric action of $G$, in the hope that this will reveal
+%some information about the group $G$.
+%The second approach is to fix a graph $\Gamma$ and study the groups
+%which act symmetrically on $\Gamma$ in the hope that this will
+%reveals some information about the graph $\Gamma$.
+
+
+\section{Bigg's Covering Graph Construction}
+
+% Introductory paragraph:
+The three-arc graph construction allows us, under certain conditions,
+to ``unfold'' a $G$-symmetric graph into a larger, {\it imprimitive}
+$G$-symmetric graph, admitting the original graph as a quotient.
+The {\it covering graph} construction \cite{B1974} is simmilar
+in this respect. It also, under certain conditions,
+allows us to ``unfold'' a $G$-symmetric graph into a larger one.
+It differs from the three-arc graph construction, however,
+in that it requires a simultaneous ``unfolding''
+of the group $G$.
+
+% Semidirect Product:
+Recall that given two groups $N$ and $G$ and a homomorphism
+$$\rho : G \to \Aut(N)$$
+we may form the {\it semidirect product} of $N$ by $G$.
+This is the group $\widetilde{G} = N \rtimes_\rho G$, 
+whose elements are the ordered pairs: 
+$$\{ (n,g) : n \in N, g \in G \}$$
+with multiplication given by:
+$$(n_1, g_1)(n_2,g_2) = (n_1^{\rho(g_1)}n_2, g_1g_2).$$
+The functions $i_1 : N \to \widetilde{G}$ and $i_2 : G \to \widetilde{G}$
+given by $ n \mapsto (n,1) $ and $ g \mapsto (1,g) $ respectively give
+natural embeddings of $N$ and $G$ into $\widetilde{G}$.
+Identifying $N$ with its image under $i_1$,
+the semidirect product has the property that $N$ is normal in $\widetilde{G}$
+and $\widetilde{G}/N \cong G$.
+
+% Definitions:
+\begin{definition} [$N$-chain]
+Suppose that $\Gamma$ is a $G$-symmetric graph and $N$ is a group.
+An $N$-chain is a function $\phi : A \Gamma \to N$ 
+satisfying $\phi((v,u)) = \phi((u,v))^{-1}$ for all $(u,v) \in A \Gamma$.
+\end{definition}
+
+\begin{definition} [Compatible $N$-chain]
+Suppose that $\Gamma$ is a $G$-symmetric graph, $N$ is a group
+and $\rho : G \to \Aut(N)$ is a homomorphism.
+An $N$-chain $\phi$ is said to be {\it compatible} with $\rho$
+if for every $g \in G$ the following diagram commutes:
+
+\centerline{
+\xymatrix{
+\ar[d]_{g} \ar[r]^\phi A \Sigma & K \ar[d]^{\rho(g)} \\
+\ar[r]_{\phi} A \Sigma & K
+}}
+\end{definition}
+
+\begin{definition}[Biggs Cover]
+Suppose that $\Gamma$ is a $G$-symmetric graph, $N$ is a group,
+$\rho : G \to \Aut(N)$ is a homomorphism and $\phi$ is a compatible $N$-chain.
+The Biggs Cover $\widetilde{\Gamma}(N,\rho,\phi)$
+of $\Gamma$ with respect to $\phi$ is the graph 
+with vertex set: 
+$\{ (g,v) : k \in G, v \in V \Gamma \}$
+and arc set: 
+$ \{ ((g_1,v_1),(g_2,v_2)) : (v_1,v_2) \in A \Gamma, g_2 = g_1 \phi((v_1,v_2)) \}$
+\end{definition}
+
+Note that the condition $\phi((v,u)) = \phi((u,v))^{-1}$ ensures that the resulting 
+graph is simple.
+
+% Proposition:
+\begin{proposition}
+The covering graph $\widetilde{\Gamma}(N,\rho,\phi)$ is $(N \rtimes_\rho G)$-symmetric.
+\begin{proof}
+
+Define an action of $N \rtimes_\rho G$ on $\widetilde{\Gamma}$ by:
+$$(n,v)^{(\eta, g)} = (n^{\rho(g)} \eta,v^g).$$
+This action is well-defined since:
+\begin{eqnarray*}
+(n,v)^{(\eta_1, g_1)(\eta_2, g_2)} 
+& = & (n^{\rho(g_1)} \eta_1 ,v^{g_1})^{(\eta_2, g_2)} \\
+& = & (n^{\rho(g_1) \rho(g_2)} \eta_1^{\rho(g_2)} \eta_2 , v^{g_1 g_2}) \\
+& = & (n,v)^{(\eta_1^{\rho(g_2)} \eta_2, g_1 g_2)}
+\end{eqnarray*}
+We must check that it preserves the adjacency structure of $\widetilde{\Gamma}$.
+Observe that, by the compatibility of $\rho$ and $\phi$, 
+if $n_2 = n_1 \phi(v_1,v_2)$ then:
+\begin{eqnarray*}
+{n_2}^{\rho(g)} \phi({v_1}^g, {v_2}^g)
+& = & {n_2}^{\rho(g)} \phi(v_1, v_2)^{\phi(g)} \\
+& = & (n_2 \phi(v_1, v_2))^{\phi(g)} \\
+& = & {n_1}^{\phi(g)} 
+\end{eqnarray*}
+for any $(\eta,g) \in N \rtimes_\rho G$.
+Also, since $G$ is a group of automorphisms of $\Gamma$, we know that
+$(v_1,v_2) \in A \Gamma$ if and only if $({v_1}^g,{v_2}^g) \in A \Gamma$.
+Thus the action defined above does indeed preserves adjacency.
+
+\hfill \break
+For any $(n_1,v_1), (n_2,v_2) \in V \widetilde{\Gamma}$, 
+by the $G$-symmetry of $\Gamma$ we can find a $g \in G$ 
+such that ${v_1}^g = {v_2}$.
+Let $\eta = {n_1}^{\rho(g)^{-1}} n_2$.
+We have:
+\begin{eqnarray*}
+(n_1,v_1)^{(\eta,g)} & = & ({n_1}^{\rho(g)} \eta,{v_1}^g) \\
+                    & = & ( {n_1}^{\rho(g)}, {n_1}^{\rho(g)^{-1}} n_2,v_2) \\
+		    & = & (n_2,v_2).
+\end{eqnarray*}
+Thus the action is vertex transitive.
+
+\hfill \break
+Suppose that $(n_1,v_1)$ and $(n_2,v_2)$ are both adjacent to $(n,g)$,
+so $n_1 = n \phi(v,v_1)$ and $n_2 = n \phi(v,v_2)$.
+By the $G$-symmetry of $\Gamma$ we can find a $g \in G_v$ such that
+$v_1^g = v_2$.
+Let $\eta = (n^{-1})^{\rho(g)}n$. We have:
+\begin{eqnarray*}
+(n,v)^{(\eta,g)} & = & (n^{\rho(g)} \eta, v^g) \\
+                 & = & (n^{\rho(g)} (n^{-1})^{\rho(g)}n, v) \\
+		 & = & (n,v)
+\end{eqnarray*}
+and:
+\begin{eqnarray*}
+(n_1,v_1)^{(\eta,g)} & = & ({n_1}^{\rho(g)} \eta, {v_1}^g) \\
+                 & = & ({n_1}^{\rho(g)} (n^{-1})^{\rho(g)}n, v_2) \\
+                 & = & ({(n_1 n^{-1})}^{\rho(g)} n, v_2) \\
+                 & = & (\phi(v,v_1)^{\rho(g)} n, v_2) \\
+                 & = & (\phi(v,v_2) n, v_2) \\
+                 & = & (n_2 n^{-1} n, v_2) \\
+                 & = & (n_2, v_2) \\
+\end{eqnarray*}
+Thus the action is locally transitive.
+The result follows.
+
+\end{proof}
+\end{proposition}
+
+In fact, a stronger result than this holds.
+If $\Gamma$ is $(G,s)$-arc transitive
+then $\widetilde{\Gamma}$ is $(\widetilde{G},s)$-arc transitive,
+where $\widetilde{G} = N \rtimes_\rho G$.
+The proof is by induction and may be found in \cite{B1974}.
+This construction was originally used by Conway
+to produce an infinitely family of $5$-arc transitive graphs.
+
+\hfill \break
+For each $v \in V \Gamma$, let $B(v) = \{ (n,v) : n \in N \}$.
+For any $(\eta, g) \in \widetilde{G}$ we have:
+\begin{eqnarray*}
+B(v)^{(\eta,g)} & = & \{ (n,v)^{(\eta,g)} : n \in N \} \\
+                & = & \{ (\eta n^{\rho(g)},v^g) : n \in N \} \\
+		& = & \{ (n, v^g) : n \in N \} \\
+		& = & B(v^g).
+\end{eqnarray*}
+Thus the partition: 
+$\cB = \{ B(v) : v \in V \Gamma \}$
+is $\widetilde{G}$-invariant.
+
+\begin{proposition}
+The quotient of the Biggs cover $\widetilde{\Gamma}$
+with respect to the partition $\cB$
+is isomorphic to the original graph $\Gamma$
+\begin{proof}
+The map $\eta : V \Gamma \to V \widetilde{\Gamma}_\cB$ given by
+$v \mapsto B(v)$ establishes a bijection between the vertices of $\Gamma$
+and the vertices of $\widetilde{\Gamma}_\cB$.
+If $(u,v)$ is an arc of $\Gamma$, then $((1,u),(\phi((u,v)),v))$
+is an arc of $\widetilde{\Gamma}$, and so $(B(u), B(v))$ 
+is an arc of $\widetilde{\Gamma}_\cB$.
+If $(u,v)$ is not an arc of $\Gamma$, then for all $n_1, n_2 \in N$
+$((n_1, u),(n_2, v))$ is not an arc of $\widetilde{\Gamma}$
+and so $(B(u), B(v))$ is not an arc of $\widetilde{\Gamma}_\cB$.
+Thus $\eta$ establishes an isomorphism between
+$\Gamma$ and $\widetilde{\Gamma}_\cB$.
+
+\end{proof}
+\end{proposition}
+
+\newpage
+Let $(B,C)$ be any arc of $\widetilde{\Gamma}$.
+By the above $B = B(u)$ and $C = B(v)$ for some $(u,v) \in A \Gamma$.
+Its not too hard to see that each $(n,u) \in B$ 
+has a unique neighbour in $C$, namely $(n \phi(u,v),v)$.
+Thus the induced bipartite graph $\Gamma[B,C]$ is a matching.
+It follows immediately that the valency of $\widetilde{\Gamma}$
+is the same as the valency of $\Gamma$. 
+
+\section{Group Theoretic Analyais of Bigg's Covering Graph Construction}
+
+The group $\widetilde{G}$ acts unfaithfully on $\cB$ with kernel 
+$$\widetilde{N} = \{ (n,1) : n \in N \} \cong N.$$
+If $|N| = n$ then $|\widetilde{G}| = n |G|$,
+and since $\widetilde{\Gamma}$ has exactly $n$ times as many vertices as $\Gamma$, 
+we have $[\widetilde{G} : \widetilde{G}_{B(\alpha)}] = n [G : G_\alpha]$.
+It follows that 
+$ |\widetilde{G}_{B(\alpha)}| = |G_\alpha|$.
+
+
+Let $\pi : \widetilde{G} \to G$ be the natural projection.
+Clearly $|\pi(\widetilde{G}_{B(\alpha)})| \leq |\widetilde{G}_{B(\alpha)}|$.
+Since $G_\alpha \leq \pi(\widetilde{G}_{B(\alpha)})$,
+we must have $G_\alpha = \pi(\widetilde{G}_{B(\alpha)})$
+and $|\pi(\widetilde{G}_{B(\alpha)})| = |\widetilde{G}_{B(\alpha)}|$, 
+so $\widetilde{G}_{B(\alpha)} \cong \pi(\widetilde{G}_{B(\alpha)}) \cong G_\alpha$.
+In fact, the permutation groups 
+$(G_\alpha, \Gamma(\alpha))$ and 
+$(\widetilde{G}_{B(\alpha)}, \widetilde{\Gamma}(B(\alpha)))$
+are equivalent via the bijection 
+$\eta : \Gamma(\alpha) \to \widetilde{\Gamma}(B(\alpha))$
+which sends $\beta$ to $B(\beta)$.
+Probably a much easier way to say this.
+
+If $\Gamma$ is isomorphic to the coset graph $\Gamma(G, H, a)$
+then since the local actions of $\Gamma$ and $\widetilde{\Gamma}$
+are the same, $\widetilde{\Gamma}$ must be isomorphic to the coset graph
+$\Gamma(\widetilde{G}, H, \widetilde{a})$ where $\widetilde{a}$
+is such that $\pi(\widetilde{a}) = a$. That is 
+$\widetilde{a} \in \{ (n,a) : n \in N \}$.
+Thus for any $N$ there are exactly $n$ possible Biggs covers of $\Gamma$.
+
+Looking closely at the compatibility condition between
+$\rho$ and $\phi$ we see that, since $G$ acts transitively
+on the arcs of $\Gamma$, the map $\phi$ is completely
+determined by where it sends the arc $(v_{H}, v_{Ha})$.
+Choosing where to send this arcs is essentially equivalent to
+choosing which preimage of $a$ we want.
+Requiring that $\phi((v_{H}, v_{Ha})) = n$ is essentially
+the same as determining that $\widetilde{a} = (n,a)$.
+
+I think that Bigg's covering graph construction encompasses
+all pairs of graphs $\Gamma(G, H, a)$ and $\Gamma(\widetilde{G}, H, \widetilde{a})$
+where $\widetilde{G}$ is a semidirect product of $N$ by $G$ for some $N$.
+In the more general case where $\widetilde{G}$ is an extention of $N$ by $G$
+but not a split extension $\Gamma(\widetilde{G}, H, \widetilde{a})$
+should be a cover of $\Gamma(G, H, a)$ in the sense that the induced
+bipartite graph is a matching, but Bigg's covering graph construction
+cannot be used to construct  $\Gamma(\widetilde{G}, H, \widetilde{a})$
+from $\Gamma(G, H, a)$.
+
+\section{Generalization of Bigg's Covering Graph Construction}
+
+The Bigg's covering graph construction applies to the case
+where $\widetilde{G}$ is a semidirect product
+of $N$ by $G$ and $H < \widetilde{G}$ is such that $H \cap N = \{1\}$.
+The graph $\widetilde{\Gamma}$ is isomorphic to 
+$\sab(\widetilde{G},H,HaH)$
+and the graph $\Gamma$ is isomorphic
+to $\sab(\widetilde{G},\widetilde{H},\widetilde{H}a\widetilde{H})$
+where $\widetilde{H} = HN$.
+
+In this section we consider a generalization of the 
+Bigg's covering graph construction in which the condition
+that $H \cap N = \{1\}$ is relaxed.
+We find that in this case $\widetilde{\Gamma}$ is a 
+{\it multicover} of $\Gamma$.
+
+\begin{lemma}
+If $H$ is a subgroup of $G$ and $N$ is a normal subgroup of $G$
+then $H \cap N$ is a normal subgroup of $H$.
+\end{lemma}
+
+Let $M = N / H \cap N$ and let $\lambda : N \to M$ be the natural projection.
+
+
+%This would happen,
+%for example, if we could find a group $\hat{H} \leq H$
+%such that $[H: a^{-1}Ha \cap H] = [\hat{H}: a^{-1}\hat{H}a \cap \hat{H}]$.
+%Then the graph $ \widetilde{\Gamma} = \Gamma(G, \hat{H}, a)$ 
+%would be a cover of $\Gamma = \Gamma(G, H, a)$,
+%but the local actions are not the same.
+
+%Why is it necessarily a cover? Suppose that $[H, \hat{H}] = k$
+%then $\widetilde{\Gamma}$ has $k$ times as many vertices as $\Gamma$.
+%If both graphs have valency $r$, then there are $rk$ edges eminating
+%from any block. Each block is adjacent to $r$ blocks,
+%so there must be $k$ edges between any two blocks.
+
+
+
+\bibliography{references}
+\bibliographystyle{plain}
+\end{document}

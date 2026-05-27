@@ -1,0 +1,343 @@
+\documentclass[12pt]{amsart}
+\usepackage[all]{xy} % for commutative diagrams
+\usepackage{amsmath} % various goodies
+\usepackage{amsthm} % some stuff for theorem numbering
+\usepackage{amsfonts}
+
+%% Theorem-type environments.
+% The first parameter to \newtheorem is what the environment is called in the 
+% LaTeX source. (What goes into the braces after \begin and \end.)
+% The second is the name that shows up in the text.
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+% (Criterion, Algorithm)
+
+\theoremstyle{definition} 
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+% (Condition, Problem)
+
+\theoremstyle{remark} 
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+% (Notation, Claim, Summary, Acknowledgement, Case, Conclusion)
+
+%% Math operators (easy thanks to amsmath)
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\core}{Core}
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\cay}{Cay}
+\DeclareMathOperator{\sab}{Sab}
+
+% Commands:
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cN}{\mathcal{N}}
+
+% Lazy:
+\newcommand{\travH}{\{ \tau_1, \tau_2, \dots \tau_n \}}
+\newcommand{\travR}{\{ t_1, t_2, \dots t_b \}}
+\newcommand{\rangen}{\{1 \dots n \}}
+
+\begin{document}
+
+\section{$G$-symmetric designs}
+
+In this Chapter we shall define a new category $G$-Design.
+The objects of this category are $G$-symmetric designs
+and the morphisms are $G$-design homomorphisms.
+We shall exhibit a ``forgetful functor'' from $G$-graph
+to $G$-design and rephrase some of the questions we have
+been asking about $G$-symmetric graphs into questions 
+about $G$-symmetric designs.
+In particular we shall describe a ``decomposition''
+for $G$-symmetric designs that is analogous to the 
+decomposition given by Gardiner and Praeger for $G$-symmetric graphs.
+
+\begin{definition}
+A $G$-flag transitive design $\cD$ is {\it self-dual}
+if there exists a $G$-isomorphism $\rho = (\rho_P, \rho_B)$
+between $\cD$ and $\cD^{*}$. 
+The $G$-isomorphism $\rho$ is called a {\it duality} of $\cD$.
+\end{definition}
+
+\begin{definition}
+A {\it $G$-symmetric design} is self-dual $G$-flag transitive design $\cD$
+which admits a dulaity $\rho = (\rho_P, \rho_B)$ with the property that 
+$\rho_B \circ \rho_P = id_P$ and $\rho_P \circ \rho_B = id_B$.
+In this case the $G$-isomorphism $\rho$ is called a {\it polarity}
+of $\cD$.
+\end{definition}
+
+Observe that if $\cD$ is a $G$-symmetric design with the property
+that $(p, \rho(p))$ is a a flag for some $p \in P_\cD$,
+then since $\rho$ is a $G$-isomorphism it follows
+that the point-stabilizer of $\cD$ is isomorphic to the flag-stabilizer of $\cD$.
+Thus each point is incident with exactly one block
+and vice versa. 
+We consider such $G$-symmetric designs to be ``degenerate'',
+and unless an explicit statement to the contrary is given shall
+take the expression ``$G$-symmetric design'' 
+to mean ``non-degenerate $G$-symmetric design''.
+
+In a sense that will become clear a little later, 
+these ``degenerate'' $G$-symmetric
+designs correspond to the ``degenerate'' orbital graph $\orb_\Delta(G,\Omega)$
+which could be formed from the permutation group $(G, \Omega)$
+by taking $\Delta$ to be the diagonal orbit,
+and also to the ``degenerate'' Sabidussi graph $\sab(G,H,a)$
+which could be formed by taking $a \in H$.
+\hfill \break
+
+We shall see that each $G$-symmetric graph 
+gives rise in a natural way to a $G$-symmetric design 
+and conversely a $G$-symmetric design together 
+with a ``marked'' polarity give rise to a $G$-symmetric graph.
+We shall also see that in some cases, by choosing a different
+polarity it is possible to construct two non-isomorphic $G$-symmetric
+graphs from the same $G$-symmetric design.
+For any graph $\Gamma$, let $N \Gamma = \{ \Gamma(v) : v \in V \Gamma \}$
+denote the set of {\it neighbourhoods} of $\Gamma$.
+
+\begin{proposition}
+If \/ $\Gamma$ is a $G$-symmetric graph,
+then the incidence structure $\cD(\Gamma) = (V \Gamma, N \Gamma,I)$
+where $(v,n) \in I$ if and only if $v \in n$ is a $G$-symmetric design
+\begin{proof}
+The $G$-arc transitivity of $\Gamma$ is sufficient to ensure
+that $\cD(\Gamma)$ is a $G$-flag transitive design.
+To see that it is in fact
+a $G$-symmetric design we must exhibit a polarity.
+
+Let $\rho_P : P \to B$ be given by $v \mapsto \Gamma(v)$.
+The map $\rho_P$ is clearly bijective, and since $G$ acts on $\Gamma$
+as a group of automorphisms we have:
+\begin{eqnarray*}
+\rho_P(v^g) & = & \Gamma(v^g) \\
+            & = & \Gamma(v)^g \\
+	    & = & \rho_P(v)^g.
+\end{eqnarray*}
+So $\rho_P$ induces a permutation isomorphism.
+Now, take $\rho_B = \rho_P^{-1}$.
+We must check that the pair $\rho = (\rho_P, \rho_B)$ preserve
+the incidence structure of the design.
+
+Suppose that $(v,\Gamma(w))$ is a flag of $\cD$, so $v \in \Gamma(w)$. 
+Since $\Gamma$ is a simple graph it follows immediately that $w \in \Gamma(v)$
+and so $(w, \Gamma(v))$ is also a flag of $\cD$.
+That is $(\Gamma(v), w)$ is a flag of $\cD^{*}$.
+But 
+\begin{eqnarray*}
+\rho((v, \Gamma(w))) & = & (\rho_P(v), \rho_B(\Gamma(w))) \\
+                     & = & (\Gamma(v), w).
+\end{eqnarray*}
+So we are done.
+
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+If $\cD$ is a (non-degenerate) $G$-symmetric design with ``marked'' polarity $\rho$
+then the graph $\Gamma(\cD, \rho)$ with vertex set $P_\cD$ 
+and arc set $\{ (p,q) : (q,\rho_P(p)) \in I_\cD \}$ is $G$-symmetric. 
+\begin{proof}
+We must first check that $\Gamma(\cD, \rho)$ is well-defined.
+The non-degenerateness of $\cD$ ensures that there are no loops. 
+If $(p,q)$ is an arc of $\Gamma(\cD, \rho)$
+then $(q, \rho_P(p))$ is a flag of $\cD$.
+Since $\rho$ is an isomorphism, 
+if $(q, \rho_P(p))$ is a flag of $\cD$
+then $(\rho_P(q), \rho_B \circ \rho_P(p)) = (\rho(q), p)$
+is a flag of $\cD^{*}$.
+It follows that $(p,\rho(q))$ is a flag of $\cD$,
+and thus $(q,p)$ is an arc of $\Gamma(\cD, \rho)$.
+So $\Gamma(\cD, \rho)$ is simple.
+
+By proposition [?] $G$ acts transitively on the points $\cD$
+so $\Gamma(\cD, \rho)$ is $G$-vertex transitive.
+Suppose that $(p,q_1)$ and $(p,q_2)$ are two distinct arcs of
+$\Gamma(\cD, \rho)$. Then we have $q_1, q_2 \in T(\rho(p))$.
+By proposition [?] 
+the stabilizer of $\rho(p)$ acts transitively on $T(\rho(p))$.
+Thus we can find some $g \in G$ which fixes $\rho(p)$ and 
+carries $q_1$ to $q_2$. 
+Since $\rho$ is a $G$-isomorphism, if $g$ fixes $\rho(p)$
+it also fixes $p$, thus $g$ carries the arc $(p,q_1)$
+to the arc $(p,q_2)$. So $\Gamma(\cD, \rho)$ is $G$-locally
+transitive. The result follows.
+
+\end{proof}
+\end{proposition}
+
+\begin{proposition}
+For any design $\cD$ and any polarity $\rho$ the design $\cD(\Gamma(\cD,\rho))$
+is isomorphic to $\cD$
+\begin{proof}
+later
+\end{proof}
+\end{proposition}
+
+\begin{definition}
+If $\cD_1$ and $\cD_2$ are two $G$-symmetric designs
+then a $G$-design homomorphism from $\cD_1$ to $\cD_2$
+is a pair of permutation homomorphisms $\eta_P : P_1 \to P_2$ and $\eta_B : B_1 \to B_2$
+satisfying $(p,b) \in I_1$ implies $(\eta_P(p),\eta_B(b)) \in I_2$. 
+\end{definition}
+
+\begin{proposition}
+If $\cD_1$ and $\cD_2$ are two $G$-symmetric designs
+then a $G$-design homomorphism from $\cD_1$ to $\cD_2$
+induces a a $G$-permutation homomorphism from the flags of $\cD_1$ 
+to the flags of $\cD_2$
+\end{proposition}
+
+What I want to say is that $G$-symmetric designs
+together with $G$-design homomorphisms form a category
+(well, kind of more of a poset really).
+I also want to say that the category $G$-Graph
+``projects down'' onto the category $G$-Design.
+$F : G$-Graph $\to G$-Design.
+If there's a $G$-graph homomorphism from $x$ to $y$
+then there's a $G$-design homomorphism from $F(x)$ to $F(y)$
+
+\section{Kernel of a design homomorphism}
+
+Gardiner and Praeger showed that whenever we have
+a $G$-symmetric graph homomorphism $\Gamma \mapsto \Sigma$
+we get an induced ``cross-sectional'' design
+on each of the fibers of the kernel.
+Here I'll show that you get exactly the same thing
+whenever you have $G$-symmetric design homomorphism.
+
+So, with an abuse of notation, let $\pi : \cD \to \cQ$
+be a $G$-symmetric design homomorphism.
+For any point $q \in P_\cQ$
+consider the {\it fiber} over $q$, 
+that is the set $F(q) = \pi^{-1}(q) = \{ p \in P_\cD : \pi(p) = q \}$.
+The ``induced kernel design'' on the fiber of $q$
+is $\cK(q) = (F(q), T(q), I_q)$
+where $(p,d) \in I_q$ if and only if there is some $b \in \pi^{-1}(d)$
+such that $(p,b) \in I_\cD$. 
+
+I think that if $\Gamma \mapsto \Sigma$ is a $G$-symmetric graph
+homomorphism and $\cD$ is the ``GP-cross-section'' of the map
+then if $F(\Gamma) \mapsto F(\Sigma)$ is the $G$-symmetric design
+homomorphism then the 
+
+%Define an incidence relation $I_p \subseteq F(\bar{p}) \times B(\bar{p})$
+%as follows: $(p,b) \in I_{\bar{p}}$ if and only if
+%there exists some $b \in \pi_B^{-1}(\bar{b})$ 
+%such that $(p,b) \in I$.
+%
+%\begin{proposition}
+%If $H$ is the stabilizer of $\bar{p}$,
+%then $D_{\bar{p}} = (F(\bar{p}), B(\bar{p}), I_{\bar{p}})$ is a $H$-design.
+%
+%\begin{proof}
+%Suppose that $q \in F(\bar{p})$ and $d \in B(\bar{p})$
+%such that $(q,d) \in I_{\bar{p}}$.
+%Then there exists some $b \in \pi_B(d)$ such that
+%$(q,b) \in I$. Since $H$ acts on $D$ as a group of
+%automorphisms, it follows that for any $h \in H$
+%we also have $(q^h, b^h) \in I$.
+%Since $b^h \in \pi_B(d)^h = \pi_b(d^h)$
+%we have $(q^h, d^h) \in I_{\bar{p}}$,
+%so $H$ acts on $D_{\bar{p}}$
+%as a group of automorphisms.
+%
+%The set $F(\bar{p})$ is a subset of $P$,
+%in fact it is a block of imprimitivity of $P$ with setwise stabilizer $H$.
+%Since $G$ acts transitively on $P$ for any
+%$q_1, q_2 \in F(\bar{p})$ we can find some $g \in G$ such that
+%$q_1^g = q_2$. Since $F(\bar{p})$ is a block of imprimitivity
+%we must have  $F(\bar{p})^g = F(\bar{p})$, so in fact $g \in H$.
+%That is $H$ acts transitively on $F(\bar{p})$.
+%
+%Let $\bar{b} = \rho_P(\bar{p})$ and let $P(\bar{b})$
+%denote the set of points incident with $\bar{b}$.
+%
+%Let $d_1, d_2 \in B(\bar{p})$ be any two blocks of $D_Q$.
+%Since $G$ acts transitively on the blocks of $D_Q$,
+%we can find some $g \in G$ such that $d_1^g = d_2$.
+%
+%\end{proof}
+%\end{proposition}
+%
+%We call the design design $(F(\bar{p}), B(\bar{p}), I_{\bar{p}})$
+%the kernel design induced on the fiber of $\bar{p}$.
+%
+%\begin{proposition}
+%Upto isomorphism $(F(\bar{p}), B(\bar{p}), I_{\bar{p}})$
+%is independent of the choice of $\bar{p}$.
+%\begin{proof}
+%\end{proof}
+%\end{proposition}
+%
+%
+%\begin{theorem}
+%This kernel design thing is, in fact, the design
+%Gardiner and Praeger were talking about in there paper.
+%\begin{proof}
+%maybe?
+%\end{proof}
+%\end{theorem}
+%
+%
+%Let $p \in P$ be any point of $\cD$ and let $b = \rho(p)$.
+%If $H < G$ stabilizes $p$ then $H$ also stabilizes $b$,
+%thus the permutation groups $(G,P)$ and $(G,B)$ are both
+%permutation isomorphic to $(G, \cos(H))$ and thus also to each other.
+
+%Suppose that $d \in B$ is a block incident with $p$, 
+%that is, $(p,d)$ is a flag of $\cD$.
+%Since $\cD$ is a $G$-design we can find some $g \in G$ such that
+%$b^g = d$. It follows that the stabilizer of $d$ is $g^{-1}Hg$,
+%and thus the stabilizer of the flag $(p,d)$ is $R = H \cap g^{-1}Hg$.
+%The action of $H$ on $B(p)$ is permutation isomorphic to $(H, \cos(R))$
+%and the action of $g^{-1}Hg$ on $P(b)$ is permutation isomorphic to $(g^{-1}Hg, \cos(R))$.
+%These two actions are permutationally equivalent but not isomorphic
+%unless $d = b$ in which case each point of the design is incident with a unique block
+%and the design is somewhat trivial.
+
+
+%Suppose that $D = (P,B,I)$ is a $G$-symmetric design,
+%so $(G,P)$ is a transitive permutation group.
+%Suppose further that $\cP$ is a $G$-invariant partition of P.
+%Let $\pi_P : P \to \cP$ be the natural projection
+%which sends a point to the block of the partition containing it.
+%The partition $\cP$ gives rise to an equivalence relation on $P$,
+%namely $p_1 \equiv p_2$ iff $\pi_P(p_1) = \pi_P(p_2)$.
+%If $\rho$ is some polarity of $D$ then we have an induced
+%equivalence relation on the blocks of $D$ given by
+%$b_1 \equiv b_2$ iff $\pi_P \circ \rho^{-1}(b_1) = \pi_P \circ \rho^{-1}(b_2)$.
+%Let $\cB$ denote the equivalence classes of this relation
+%and let $\pi_B$ be the natural projection from $B$ into $\cB$.
+%Define a new design $\overline{D} = (\cP,\cB,\overline{I})$
+%where the incidence relation is
+%$(\bar{p},\bar{b}) \in \overline{I}$ if and only if there is
+%some $p \in P$ and some $b \in B$ such that $\bar{p} = \pi_P(p)$
+%and $\bar{b} = \pi_B{b}$ and $(p,b) \in I$.
+%
+%\begin{theorem}
+%The design $\overline{D} = (\cP,\cB,\overline{I})$
+%is $G$-symmetric
+%The maps $\pi_P$ and $\pi_B$ induce a $G$-epimorphism
+%from $D$ to $\overline{D}$. Furthermore, every $G$-epimorphism
+%is of this form
+%\begin{proof}
+%obvious?
+%\end{proof}
+%\end{theorem}
+%
+\end{document}
