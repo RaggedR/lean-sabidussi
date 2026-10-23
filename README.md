@@ -1,10 +1,18 @@
 # Sabidussi's Representation Theorem in Lean 4
 
+[![Lean CI](https://github.com/RaggedR/lean-sabidussi/actions/workflows/lean_action_ci.yml/badge.svg)](https://github.com/RaggedR/lean-sabidussi/actions/workflows/lean_action_ci.yml)
+
 A formalization of **Sabidussi's representation theorem** for vertex-transitive
 graphs and **Lorimer's theorem** on arc-transitive (symmetric) graphs, built on
 [Mathlib](https://github.com/leanprover-community/mathlib4).
 
-**736 lines of Lean 4. Zero sorry's.**
+**736 lines of Lean 4. Zero sorry's — machine-checked.** The badge above is green
+only when CI builds the whole development *and* `#print axioms` confirms that none
+of the four headline theorems — `sabidussiIso` (the representation theorem),
+`lorimer_forward` and `connectionSet_eq_doubleCoset` (Lorimer, both directions),
+and `quotient_cosetGraph_iso` (the quotient theorem) — depends on `sorryAx`. Each
+reduces to only Lean's foundational axioms (`propext`, `Classical.choice`,
+`Quot.sound`), so "zero sorry" is a verified fact rather than a claim taken on trust.
 
 ## What's here
 
