@@ -5,11 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read # Read access to repository contents
-  pages: write # Write access to GitHub Pages
-  id-token: write # Write access to ID tokens
+  contents: read
 
 jobs:
   build:
@@ -17,5 +14,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+
+      # Builds the `Sabidussi` library (fetches the Mathlib olean cache first,
+      # so Mathlib is not recompiled from source).
       - uses: leanprover/lean-action@v1
-      - uses: leanprover-community/docgen-action@v1
+
+      # Certification: no `sorry` reaches any headline theorem.
+      # The default shell is `bash -eo pipefail`, so a Lean elaboration error
+      # (e.g. an unresolved name) fails the step on its own. On top of that we
+      # fail if the axiom report mentions `sorryAx`, and — to defeat a vacuous
+      # pass — we require a `depends on axioms` line for each of the four results.
+      - name: Axiom certification (no sorry reaches the headline theorems)
+        run: |
+          lake env lean Certify.lean 2>&1 | tee axioms.txt
+          if grep -q "sorryAx" axioms.txt; then
+            echo "::error::sorryAx reached a headline theorem — certification failed"
+            exit 1
+          fi
+          for t in sabidussiIso lorimer_forward connectionSet_eq_doubleCoset quotient_cosetGraph_iso; do
+            if ! grep -q "'$t' depends on axioms" axioms.txt; then
+              echo "::error::no axiom report for '$t' — name did not resolve (vacuous certification)"
+              exit 1
+            fi
+          done
+          echo "Certified: all four headline theorems proved with no sorry."
